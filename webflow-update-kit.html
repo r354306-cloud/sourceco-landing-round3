@@ -1,0 +1,805 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SourceCo LP Round 3 Webflow update</title>
+<style>
+:root{--bg:#f7f5f1;--card:#fff;--ink:#221f1c;--muted:#6f6860;--line:#e6e1d8;--gold:#a17936;--code:#1f1d1b;--codefg:#ece7df;--ok:#2f6b3a}
+@media (prefers-color-scheme:dark){:root{--bg:#171513;--card:#211f1c;--ink:#f1ece4;--muted:#a59d92;--line:#36322d;--gold:#d7b65c;--code:#0f0e0d;--codefg:#e6e0d6;--ok:#8fd19a}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:28px 16px 80px}h1{font-size:27px;line-height:1.15;letter-spacing:-.02em;margin:0 0 6px}h2{font-size:18px;margin:28px 0 8px}h3{font-size:15.5px;margin:0}
+p{margin:6px 0}.muted{color:var(--muted)}li{margin:4px 0}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:6px;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--line);margin:18px 0}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 14px/1 inherit;font-family:inherit;padding:10px 16px;border-radius:999px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.embed{border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;background:var(--card)}
+.top{display:flex;gap:14px;justify-content:space-between;align-items:flex-start}.tag{display:block;font:600 11px/1 inherit;font-family:inherit;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.btn{border:0;background:var(--gold);color:#fff;font:600 13px/1 inherit;font-family:inherit;padding:10px 16px;border-radius:8px;cursor:pointer;white-space:nowrap}.btn.done{background:var(--ok)}
+details{margin-top:10px}summary{cursor:pointer;font-size:13px;color:var(--muted)}
+textarea{display:block;width:100%;height:220px;margin-top:8px;background:var(--code);color:var(--codefg);border:0;border-radius:10px;padding:12px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;resize:vertical}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:9px 8px;border-top:1px solid var(--line)}th{font-size:12px;color:var(--muted);border-top:0}
+code{font:13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:2px 6px}
+[hidden]{display:none!important}
+</style></head><body><div class="wrap">
+<h1>Round 3 Webflow update</h1>
+<p class="muted">Three embeds changed on each page. Paste each one over the embed with the same number, the same way as the first kit. Nothing else on the page moved, so embeds 03 to 08 stay as they are.</p>
+<h2>What changes when you paste</h2>
+<ul>
+<li>Five hero options per page, picked by the end of the ad's link. No <code>?v=</code> means the current headline, so organic traffic sees no change.</li>
+<li>The hero description now shows on phones. It was hidden under 768px.</li>
+<li>One line under every form button: Not a broker · Buyers pay our fee · No obligation.</li>
+<li>A Prefer email first? checkbox on the last step. Leads arrive with <code>contact_preference</code> set to <code>email_first</code> or <code>call</code>, and <code>page_variant</code> still carries the hero.</li>
+</ul>
+<h2>What each ad's link ends with</h2>
+<p class="muted">The pages are <code>sourcecodeals.com/lp-hvac</code>, <code>sourcecodeals.com/lp-electrical</code>, <code>sourcecodeals.com/lp-fleet-service</code>. The ad copy sheet has the full link for every ad.</p>
+<table><thead><tr><th>Ad</th><th>Link ends with</th><th>Hero it opens</th></tr></thead><tbody><tr><td>A. Your number</td><td><code>?v=number</code></td><td>Your number</td></tr><tr><td>B. Someday</td><td><code>?v=someday</code></td><td>Not ready yet</td></tr><tr><td>C. Your terms</td><td><code>?v=terms</code></td><td>Your terms</td></tr><tr><td>D. Owner's words</td><td><code>?v=words</code></td><td>Owner&#x27;s words</td></tr><tr><td>Organic, or no parameter</td><td>nothing, or <code>?v=pride</code></td><td>Pride (your current headline)</td></tr></tbody></table>
+<div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="hvac">HVAC</button><button role="tab" aria-selected="false" data-t="electrical">Electrical</button><button role="tab" aria-selected="false" data-t="fleet">Fleet service</button></div>
+<section class="panel" data-t="hvac"><div class="embed"><div class="top"><div><span class="tag">HVAC</span><h3>01 Hero headline</h3><p class="muted">Adds the one style line that shows the description on phones. The headline in it is still your current one.</p></div><button class="btn" data-copy="c-hvac-01">Copy</button></div><details><summary>Show the code (661 characters)</summary><textarea id="c-hvac-01" readonly spellcheck="false">&lt;!-- SourceCo LP | HVAC | 01 Hero headline | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: the hero description now shows on phones too */@container asl-page (max-width:767px){.asl-lede{display:block;margin-top:12px;max-width:none;font-size:15px;line-height:1.5}}&lt;/style&gt;&lt;div class=&quot;asl-lead&quot;&gt;&lt;h1 class=&quot;asl-h1 asl-rise asl-d1&quot; id=&quot;h1&quot;&gt;You Built a Great HVAC Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&lt;/h1&gt;&lt;p class=&quot;asl-lede asl-rise asl-d2&quot; id=&quot;sub&quot;&gt;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&lt;/p&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">HVAC</span><h3>02 Lead form (all 3 steps)</h3><p class="muted">New line under each button, and the Prefer email first? checkbox on the last step.</p></div><button class="btn" data-copy="c-hvac-02">Copy</button></div><details><summary>Show the code (9,831 characters)</summary><textarea id="c-hvac-02" readonly spellcheck="false">&lt;!-- SourceCo LP | HVAC | 02 Lead form (all 3 steps) | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: email-first option + step 3 reassurance */.asl-ef{display:flex;align-items:flex-start;gap:11px;margin:18px 0 0;padding:13px 14px;border:1px solid rgba(34,31,28,.16);border-radius:12px;font:400 13.5px/1.45 var(--font-text);color:var(--ink);cursor:pointer}.asl-ef input{width:18px;height:18px;margin:1px 0 0;flex:0 0 auto;accent-color:#221f1c}.asl-ef b{font-weight:600}.asl-assure3{margin-top:14px}&lt;/style&gt;&lt;style&gt;#stepLabel{white-space:nowrap}.asl-pane h2,.asl-pane legend{text-wrap:balance}&lt;/style&gt;&lt;div class=&quot;asl-plate asl-form&quot; role=&quot;group&quot; aria-label=&quot;Confidential valuation request&quot;&gt;&lt;div class=&quot;asl-f-head&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-back&quot; id=&quot;back&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot; transform=&quot;rotate(180 8 8)&quot;/&gt;&lt;/svg&gt;Back&lt;/button&gt;&lt;p class=&quot;asl-f-kick&quot; id=&quot;kick&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#lock2&quot;/&gt;&lt;/svg&gt;Confidential valuation request&lt;/p&gt;&lt;span class=&quot;asl-f-step&quot; id=&quot;stepLabel&quot;&gt;Step 1 of 3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;asl-prog&quot; aria-hidden=&quot;true&quot;&gt;&lt;i class=&quot;asl-on&quot;&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;p class=&quot;asl-resume&quot; id=&quot;resume&quot; hidden&gt;Welcome back. Your answers are saved.&lt;/p&gt;&lt;div class=&quot;asl-panes&quot; id=&quot;panes&quot;&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;1&quot;&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q1&quot; tabindex=&quot;-1&quot;&gt;What kind of HVAC work do you do?&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;Three quick steps. About a minute.&lt;/p&gt;&lt;fieldset class=&quot;asl-chips asl-c1&quot; aria-labelledby=&quot;q1&quot;&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;residential&quot; autocomplete=&quot;off&quot; aria-required=&quot;true&quot;&gt;&lt;span&gt;Residential service&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;commercial&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Commercial service&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;both&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Both&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;other&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Other&lt;/span&gt;&lt;/label&gt;&lt;/fieldset&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;1&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;2&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q2&quot; tabindex=&quot;-1&quot;&gt;Two quick details&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;So we can match you with buyers who fit.&lt;/p&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-rev&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-rev&quot;&gt;Annual revenue&lt;small&gt;Most recent year. A rough number is fine.&lt;/small&gt;&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c3&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;under-1m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Under $1M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;1m-2m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$1M – $2M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;2m-5m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$2M – $5M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;5m-10m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$5M – $10M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;10m-15m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$10M – $15M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;15m-plus&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$15M +&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;rev&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-rev&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose your annual revenue.&lt;/p&gt;&lt;/fieldset&gt;&lt;p class=&quot;asl-note&quot; id=&quot;under&quot; role=&quot;status&quot; hidden&gt;&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Most of our buyers look for companies with $1.2M+ in annual revenue. You can still continue and we will tell you whether a match is likely.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;asl-note&quot; id=&quot;under1&quot; role=&quot;status&quot; hidden&gt;
+&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;
+&lt;span&gt;Most of our buyers look for companies with $1.2M+ in annual revenue, so a match for the business alone is less likely. You can still continue. If you own the property your company runs from, we can help you sell that too.&lt;/span&gt;
+&lt;/p&gt;
+&lt;fieldset class=&quot;asl-grp&quot; id=&quot;own&quot; aria-labelledby=&quot;l-own&quot; hidden&gt;
+&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-own&quot;&gt;Do you own the property your company runs from?&lt;/legend&gt;
+&lt;div class=&quot;asl-chips&quot; style=&quot;grid-template-columns:repeat(2,1fr)&quot;&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;yes&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Yes, I own it&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;no&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;No, I rent&lt;/span&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;p class=&quot;asl-gerr&quot; id=&quot;e-own&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Tell us if you own the property.&lt;/p&gt;
+&lt;/fieldset&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-time&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-time&quot;&gt;When are you thinking of selling?&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c6&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;asap&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;As soon as possible&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;6-months&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within 6 months&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;over-1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;More than a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;exploring&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Just exploring&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;time&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gentle&quot; id=&quot;explore&quot; hidden&gt;Just exploring is fine. Alia from SourceCo will call you about what buyers in HVAC look for and how they would value your company. Expect her call soon.&lt;/p&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-time&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose when you are thinking of selling.&lt;/p&gt;&lt;/fieldset&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-btn&quot; id=&quot;go2&quot;&gt;Continue&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;3&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q3&quot; tabindex=&quot;-1&quot;&gt;Last step: where can Alia reach you?&lt;/h2&gt;&lt;div class=&quot;asl-fields&quot;&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-name&quot;&gt;Full name&lt;/label&gt;&lt;input id=&quot;f-name&quot; name=&quot;full_name&quot; data-name=&quot;full_name&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; inputmode=&quot;text&quot; placeholder=&quot;First and last name&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-name&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-phone&quot;&gt;Mobile phone&lt;small&gt;Best number to reach you&lt;/small&gt;&lt;/label&gt;&lt;input id=&quot;f-phone&quot; name=&quot;phone&quot; data-name=&quot;phone&quot; type=&quot;tel&quot; autocomplete=&quot;tel&quot; inputmode=&quot;tel&quot; placeholder=&quot;(555) 555-5555&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-phone&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-email&quot;&gt;Email&lt;/label&gt;&lt;input id=&quot;f-email&quot; name=&quot;email&quot; data-name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; inputmode=&quot;email&quot; placeholder=&quot;you@yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-email&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-state&quot;&gt;State&lt;/label&gt;&lt;div class=&quot;asl-sel&quot;&gt;&lt;select id=&quot;f-state&quot; name=&quot;state&quot; data-name=&quot;state&quot; autocomplete=&quot;address-level1&quot; aria-required=&quot;true&quot;&gt;&lt;option value=&quot;&quot;&gt;Select state&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-state&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f asl-wide&quot;&gt;&lt;label for=&quot;f-web&quot;&gt;Company website or name&lt;/label&gt;&lt;input id=&quot;f-web&quot; name=&quot;website&quot; data-name=&quot;website&quot; type=&quot;text&quot; autocomplete=&quot;organization&quot; inputmode=&quot;text&quot; autocapitalize=&quot;off&quot; spellcheck=&quot;false&quot; placeholder=&quot;yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-web&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;label class=&quot;asl-ef&quot; for=&quot;f-emailfirst&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;f-emailfirst&quot; name=&quot;email_first&quot; data-name=&quot;email_first&quot; value=&quot;yes&quot;&gt;&lt;span&gt;&lt;b&gt;Prefer email first?&lt;/b&gt; Alia will email you before she calls.&lt;/span&gt;&lt;/label&gt;&lt;div id=&quot;hidden&quot; hidden&gt;&lt;/div&gt;&lt;p class=&quot;asl-priv&quot;&gt;&lt;svg class=&quot;asl-ckp&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;10&quot;/&gt;&lt;path d=&quot;M6 10.2l2.8 2.7 5.2-5.6&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Your name stays private. A buyer only gets it if you approve.&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;asl-callrow&quot;&gt;&lt;img src=&quot;https://cdn.prod.website-files.com/66851dae8a2c8c3f8cd9c703/6ae8dc2b62472bb6cc4073aa_lp-auto-shop-team-alia-face-p-130x130q80.jpg&quot; alt=&quot;&quot; width=&quot;130&quot; height=&quot;130&quot;&gt;&lt;p&gt;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile within &lt;span data-window&gt;1 business day&lt;/span&gt; to walk you through what buyers would pay. We do not call your office or dispatch line.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;submit&quot; class=&quot;asl-btn&quot; id=&quot;go3&quot;&gt;See What Buyers Would Pay&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure asl-assure3&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;p class=&quot;asl-consent&quot;&gt;By submitting, you agree to a confidential follow-up from SourceCo. We only share your details with buyers you approve, and we never sell them. &lt;a href=&quot;#privacy&quot;&gt;Privacy Policy&lt;/a&gt; and &lt;a href=&quot;#terms&quot;&gt;Terms&lt;/a&gt;.&lt;/p&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">HVAC</span><h3>09 Page script (config, tracking, form logic)</h3><p class="muted">The five hero options behind ?v=, plus contact_preference sent with every lead. emailFirst:false at the top hides the email-first box.</p></div><button class="btn" data-copy="c-hvac-09">Copy</button></div><details><summary>Show the code (21,994 characters)</summary><textarea id="c-hvac-09" readonly spellcheck="false">&lt;!-- SourceCo LP | HVAC | 09 Page script (config, tracking, form logic) | paste replaces the whole embed --&gt;
+&lt;script&gt;
+(()=&gt;{
+&#x27;use strict&#x27;;
+/* ---------- config (edit here) ---------- */
+const CFG={emailFirst:true,/* false hides the Prefer email first? box */contactWindow:&#x27;1 business day&#x27;,underTwoM:[&#x27;under-1m&#x27;,&#x27;1m-2m&#x27;],underOneM:[&#x27;under-1m&#x27;],metaDataset:&#x27;1511173720348243&#x27;,tyPath:&#x27;/lp-hvac-thank-you&#x27;,redirectDelay:450,gtag:true,leadName:&#x27;hvac_lp&#x27;};
+const V={
+default:{h:&#x27;You Built a Great HVAC Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;},
+compare:{h:&#x27;You Built a Great HVAC Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. See which vetted buyers fit, and compare them before you decide anything. The buyer pays our fee.&#x27;,p:&#x27;Compare the buyers who fit&#x27;},
+call:{h:&#x27;You Built a Great HVAC Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;,c:&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile from (614) 699-5764 within &lt;span data-window&gt;1 business day&lt;/span&gt;. A short call, no obligation. We do not call your office or dispatch line.&#x27;},
+someday:{h:&#x27;Not Ready to Sell? &lt;em&gt;Know Your Number&lt;/em&gt; Anyway.&#x27;,s:&#x27;Most owners we talk to are years out. Seeing what vetted buyers would pay costs nothing, commits you to nothing, and nobody finds out.&#x27;},
+control:{h:&#x27;Own an HVAC Company Doing &lt;em&gt;$2M+&lt;/em&gt;? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches residential and commercial HVAC owners with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+wonder:{h:&#x27;Ever Wondered What Buyers Would Pay for Your HVAC Company?&#x27;,s:&#x27;Find out who would compete for it. Nothing to sign, nobody finds out, and you can walk away any time. The buyer pays our fee.&#x27;},
+terms:{h:&#x27;Get Vetted Buyers &lt;em&gt;Competing&lt;/em&gt; for Your HVAC Company.&#x27;,s:&#x27;Don’t let the first offer set your price. No broker fees, no clean books needed to start, and you decide what happens next.&#x27;},
+main:{h:&#x27;Getting Calls From HVAC Buyers? See Who Else Would Buy.&#x27;,s:&#x27;SourceCo checks what you want against 4,000+ vetted buyers and shows you which ones fit. The buyer pays our fee, and nothing goes public until you decide.&#x27;},
+a:{h:&#x27;Ready to Step Back From the HVAC Company You Built?&#x27;,s:&#x27;Tell us what matters, like your company name, your techs and your customers. SourceCo only introduces vetted buyers who fit. The buyer pays our fee.&#x27;},
+b:{h:&#x27;What’s Your HVAC Company Really Worth?&#x27;,s:&#x27;Answer a few quick questions and Alia from SourceCo walks you through what credible buyers could pay.&#x27;},
+c:{h:&#x27;Lots of Maintenance Agreements? Buyers Want to Talk.&#x27;,s:&#x27;Recurring service revenue is one of the first things HVAC buyers ask about. SourceCo matches you privately with vetted buyers. The buyer pays our fee.&#x27;},
+d:{h:&#x27;&lt;em&gt;$2M+&lt;/em&gt; HVAC Company? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches residential and commercial HVAC owners with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+e:{h:&#x27;HVAC Company Owners: Know Your Exit Options.&#x27;,s:&#x27;SourceCo shows you which vetted buyers fit, privately. Nothing goes public until you decide.&#x27;},
+f:{h:&#x27;Find the Right HVAC Buyer, Not Just the One Who Called.&#x27;,s:&#x27;A buyer who calls you is pitching itself. SourceCo shows you the vetted buyers who fit and what buyers like them could pay. The buyer pays our fee.&#x27;},
+number:{h:&#x27;What Would Buyers Pay for Your &lt;em&gt;HVAC Company&lt;/em&gt;?&#x27;,s:&#x27;Answer 3 quick questions and we’ll walk you through what vetted buyers would pay. Free, confidential, and no obligation to sell.&#x27;},
+words:{h:&#x27;Still on the Tools? See What &lt;em&gt;Buyers Would Pay&lt;/em&gt;.&#x27;,s:&#x27;A lot of HVAC owners we talk to have never had the company valued. 3 quick questions, no cost, and your crew won’t know unless you decide.&#x27;},
+pride:{h:&#x27;You Built a Great HVAC Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;}
+};
+const STATES=&#x27;Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,District of Columbia,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming&#x27;.split(&#x27;,&#x27;);
+const TP=[&#x27;utm_source&#x27;,&#x27;utm_medium&#x27;,&#x27;utm_campaign&#x27;,&#x27;utm_content&#x27;,&#x27;utm_term&#x27;,&#x27;fbclid&#x27;,&#x27;gclid&#x27;,&#x27;ad_id&#x27;,&#x27;adset_id&#x27;,&#x27;campaign_id&#x27;,&#x27;ad_name&#x27;,&#x27;adset_name&#x27;,&#x27;campaign_name&#x27;,&#x27;placement&#x27;,&#x27;utm_id&#x27;,&#x27;site_source&#x27;];
+
+const $=(s,r=document)=&gt;r.querySelector(s),$$=(s,r=document)=&gt;[...r.querySelectorAll(s)];
+const reduce=matchMedia(&#x27;(prefers-reduced-motion:reduce)&#x27;).matches;
+const dl=window.dataLayer=window.dataLayer||[];
+const gt=(n,p)=&gt;{try{if(CFG.gtag&amp;&amp;typeof window.gtag===&#x27;function&#x27;)window.gtag(&#x27;event&#x27;,n,{...p,lp:&#x27;hvac&#x27;});}catch(e){}};
+const track=(event,p={})=&gt;{dl.push({event,lp:&#x27;hvac&#x27;,...p});gt(event,p);};
+/* Meta: send to the SourceCo Dataset only (the one the ad sets optimise on). A plain track() would go to both datasets and double count. */
+const fb=(n,p,std,id)=&gt;{try{if(window.fbq)window.fbq(std?&#x27;trackSingle&#x27;:&#x27;trackSingleCustom&#x27;,CFG.metaDataset,n,p||{},id?{eventID:id}:undefined);}catch(e){}};
+const SK=&#x27;sc_hvac_lp_v1&#x27;,TTL=14*864e5;
+const store={get(){try{const d=JSON.parse(localStorage.getItem(SK)||&#x27;null&#x27;);return d&amp;&amp;Date.now()-d.t&lt;TTL?d:null;}catch(e){return null;}},set(o){try{localStorage.setItem(SK,JSON.stringify({...(store.get()||{}),...o,t:Date.now()}));}catch(e){}},clear(){try{localStorage.removeItem(SK);}catch(e){}}};
+const saved=store.get();
+const LEAD_ID=(saved&amp;&amp;saved.id)||(window.crypto&amp;&amp;crypto.randomUUID?crypto.randomUUID():&#x27;l&#x27;+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+store.set({id:LEAD_ID});
+window.SOURCECO_LP={config:CFG,track,leadId:LEAD_ID};
+
+/* ---------- message match + tracking passthrough ---------- */
+const qp=new URLSearchParams(location.search);
+const v=V[(qp.get(&#x27;v&#x27;)||&#x27;default&#x27;).toLowerCase()]||V.default;
+$(&#x27;#h1&#x27;).innerHTML=v.h;$(&#x27;#sub&#x27;).textContent=v.s;
+/* test variants: p swaps the first hero checkmark, c swaps the step 3 call line */
+if(v.p){const li=$(&#x27;.asl-pr li&#x27;);if(li&amp;&amp;li.lastChild)li.lastChild.textContent=v.p;}
+if(v.c){const cr=$(&#x27;.asl-callrow p&#x27;);if(cr)cr.innerHTML=v.c;}
+$$(&#x27;[data-window]&#x27;).forEach(e=&gt;e.textContent=CFG.contactWindow);
+const hid=$(&#x27;#hidden&#x27;);
+const AK=&#x27;sc_lp_attr_v1&#x27;;/* ad ids and UTMs from the ad click, kept 7 days so a later visit or reload still carries them */
+const attr=(()=&gt;{let o={};try{const d=JSON.parse(localStorage.getItem(AK)||&#x27;null&#x27;);if(d&amp;&amp;Date.now()-d.t&lt;7*864e5)o=d.v||{};}catch(e){}
+ const keep=k=&gt;TP.includes(k)||k.startsWith(&#x27;utm_&#x27;);let ch=false;qp.forEach((v2,k)=&gt;{if(keep(k)&amp;&amp;v2){o[k]=v2;ch=true;}});
+ if(ch){try{localStorage.setItem(AK,JSON.stringify({t:Date.now(),v:o}));}catch(e){}}return o;})();
+const ck=n=&gt;{const m=document.cookie.match(new RegExp(&#x27;(?:^|; )&#x27;+n+&#x27;=([^;]*)&#x27;));return m?decodeURIComponent(m[1]):&#x27;&#x27;;};
+const hidden={};
+const addHidden=(n,v2)=&gt;{let i=hid.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;]&#x27;);if(!i){i=document.createElement(&#x27;input&#x27;);i.type=&#x27;hidden&#x27;;i.name=n;i.setAttribute(&#x27;data-name&#x27;,n);hid.append(i);}if(v2!==undefined)i.value=v2;hidden[n]=i;return i;};
+[...new Set([...TP,...Object.keys(attr)])].forEach(k=&gt;addHidden(k,attr[k]||&#x27;&#x27;));
+[&#x27;lead_id&#x27;,&#x27;event_id&#x27;,&#x27;lead_status&#x27;,&#x27;page_variant&#x27;,&#x27;keep_in_touch&#x27;,&#x27;owns_property&#x27;,&#x27;lp_name&#x27;,&#x27;page_url&#x27;,&#x27;fbp&#x27;,&#x27;fbc&#x27;,&#x27;contact_preference&#x27;].forEach(k=&gt;addHidden(k,&#x27;&#x27;));
+function stampHidden(){
+ const fbclid=(attr.fbclid||qp.get(&#x27;fbclid&#x27;)||&#x27;&#x27;);
+ let fbc=ck(&#x27;_fbc&#x27;);if(!fbc&amp;&amp;fbclid)fbc=&#x27;fb.1.&#x27;+Date.now()+&#x27;.&#x27;+fbclid;
+ const set={lead_id:LEAD_ID,event_id:LEAD_ID,lead_status:&#x27;complete&#x27;,page_variant:qp.get(&#x27;v&#x27;)||&#x27;default&#x27;,keep_in_touch:val(&#x27;timing&#x27;)===&#x27;exploring&#x27;?&#x27;1&#x27;:&#x27;0&#x27;,owns_property:CFG.underOneM.includes(val(&#x27;revenue&#x27;))?(val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;):&#x27;&#x27;,lp_name:CFG.leadName,page_url:location.href.split(&#x27;#&#x27;)[0],fbp:ck(&#x27;_fbp&#x27;),fbc,contact_preference:(CFG.emailFirst&amp;&amp;$(&#x27;#f-emailfirst&#x27;)&amp;&amp;$(&#x27;#f-emailfirst&#x27;).checked)?&#x27;email_first&#x27;:&#x27;call&#x27;};
+ /* Marketplace adapter: the owner-lead intake reads these exact names and display strings (same as the /lp-request form), so Timeline, revenue and industry map with no marketplace change. The raw chip values above stay as the clean keys. */
+ const REVL={&#x27;under-1m&#x27;:&#x27;Under $1M (not a great fit)&#x27;,&#x27;1m-2m&#x27;:&#x27;$1M - $2M&#x27;,&#x27;2m-5m&#x27;:&#x27;$2M - $5M&#x27;,&#x27;5m-10m&#x27;:&#x27;$5M - $10M&#x27;,&#x27;10m-15m&#x27;:&#x27;$10M - $15M&#x27;,&#x27;15m-plus&#x27;:&#x27;$15M +&#x27;};
+ const TIML={&#x27;asap&#x27;:&#x27;ASAP&#x27;,&#x27;6-months&#x27;:&#x27;Within 6 months&#x27;,&#x27;1-year&#x27;:&#x27;Within a year&#x27;,&#x27;over-1-year&#x27;:&#x27;More than a year&#x27;,&#x27;exploring&#x27;:&#x27;Just exploring&#x27;};
+ set[&#x27;Estimated Annual Revenue&#x27;]=REVL[val(&#x27;revenue&#x27;)]||&#x27;&#x27;;set[&#x27;Timeline&#x27;]=TIML[val(&#x27;timing&#x27;)]||&#x27;&#x27;;set[&#x27;industry&#x27;]=&#x27;HVAC&#x27;;
+ Object.keys(set).forEach(k=&gt;addHidden(k,set[k]));
+ TP.forEach(k=&gt;{const i=addHidden(k);if(!i.value&amp;&amp;(attr[k]||qp.get(k)))i.value=attr[k]||qp.get(k);});
+}
+$(&#x27;#f-state&#x27;).append(...STATES.map(s=&gt;new Option(s,s)));
+/* Round 3: email-first. Swaps the call line and is sent as contact_preference. */
+{const ef=$(&#x27;#f-emailfirst&#x27;),cr=$(&#x27;.asl-callrow p&#x27;);if(ef&amp;&amp;!CFG.emailFirst){ef.closest(&#x27;label&#x27;).style.display=&#x27;none&#x27;;}else if(ef&amp;&amp;cr){const callHtml=cr.innerHTML,mailHtml=&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will email you first, within &lt;span data-window&gt;&#x27;+CFG.contactWindow+&#x27;&lt;/span&gt;, and set up a time to talk that works for you.&#x27;;ef.addEventListener(&#x27;change&#x27;,()=&gt;{cr.innerHTML=ef.checked?mailHtml:callHtml;track(&#x27;email_first_toggled&#x27;,{on:ef.checked});});}}
+
+/* ---------- form state machine ---------- */
+const form=$(&#x27;#lead&#x27;),panes=$(&#x27;#panes&#x27;),live=$(&#x27;#live&#x27;),dock=$(&#x27;#dock&#x27;);
+{const vw=+qp.get(&#x27;vw&#x27;);if(vw){const pg=$(&#x27;#page&#x27;),fit=()=&gt;{pg.style.width=vw+&#x27;px&#x27;;pg.style.zoom=document.documentElement.clientWidth/vw;};fit();addEventListener(&#x27;resize&#x27;,fit);addEventListener(&#x27;load&#x27;,fit);}}
+let step=1,ptr=false,sent=false,inView=true,resumed=false,partialMeta=false;
+const val=n=&gt;(form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||{}).value;
+const mobile=()=&gt;$(&#x27;#page&#x27;).clientWidth&lt;768;
+const heads={1:&#x27;#q1&#x27;,2:&#x27;#q2&#x27;,3:&#x27;#q3&#x27;};
+
+function toCard(smooth=true){const y=form.getBoundingClientRect().top+scrollY-(mobile()?12:24);scrollTo({top:Math.max(0,y),behavior:smooth&amp;&amp;!reduce?&#x27;smooth&#x27;:&#x27;auto&#x27;});}
+function firstCtl(){
+ const r=n=&gt;form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||form.querySelector(`input[name=&quot;${n}&quot;]`);
+ return step===1?r(&#x27;shop_type&#x27;):step===2?r(&#x27;revenue&#x27;):$(&#x27;#f-name&#x27;);
+}
+function show(n,o={}){
+ const h0=panes.offsetHeight,prev=step;step=n;panes.dataset.dir=n&lt;prev?&#x27;b&#x27;:&#x27;f&#x27;;
+ $$(&#x27;.asl-pane&#x27;,form).forEach(p=&gt;p.hidden=+p.dataset.step!==n);
+ $$(&#x27;.asl-prog i&#x27;,form).forEach((el,i)=&gt;el.classList.toggle(&#x27;asl-on&#x27;,i&lt;Math.min(n,3)));
+ $(&#x27;.asl-prog&#x27;,form).hidden=$(&#x27;.asl-f-head&#x27;,form).hidden=n===4;
+ $(&#x27;#back&#x27;).hidden=n&lt;2;$(&#x27;#kick&#x27;).hidden=n&gt;=2;$(&#x27;#resume&#x27;).hidden=!(resumed&amp;&amp;(n===2||n===3));
+ $(&#x27;#stepLabel&#x27;).textContent=&#x27;Step &#x27;+Math.min(n,3)+&#x27; of 3&#x27;;
+ const h1=panes.offsetHeight;
+ if(!reduce&amp;&amp;h0&amp;&amp;h0!==h1&amp;&amp;!o.silent){panes.style.overflow=&#x27;hidden&#x27;;panes.animate([{height:h0+&#x27;px&#x27;},{height:h1+&#x27;px&#x27;}],{duration:380,easing:&#x27;cubic-bezier(.16,1,.3,1)&#x27;}).onfinish=()=&gt;{panes.style.overflow=&#x27;&#x27;;};}
+ if(o.push)history.pushState({step:n},&#x27;&#x27;);
+ if(!o.silent){
+  if(n&lt;4)track(&#x27;form_step_viewed&#x27;,{step:n});
+  live.textContent=&#x27;&#x27;;setTimeout(()=&gt;{live.textContent=&#x27;Step &#x27;+n+&#x27; of 3&#x27;;},60);
+  const hd=$(heads[n]);hd&amp;&amp;hd.focus({preventScroll:true});
+  if(mobile()||form.getBoundingClientRect().top&lt;0)toCard();
+ }
+ dockState();
+}
+
+/* step 1 */
+function go1(){const s=val(&#x27;shop_type&#x27;);if(!s)return;track(&#x27;form_step_completed&#x27;,{step:1,shop_type:s});fb(&#x27;QuizStep1&#x27;,{shop_type:s});store.set({shop_type:s});show(2,{push:true});}
+/* step 2 */
+function group(n,id,msg){const ok=!!val(n);$(id).hidden=ok;if(!ok)track(&#x27;form_error&#x27;,{field:n,error:&#x27;required&#x27;});return ok;}
+function go2(){
+ const a=group(&#x27;revenue&#x27;,&#x27;#e-rev&#x27;),b=group(&#x27;timing&#x27;,&#x27;#e-time&#x27;),c=CFG.underOneM.includes(val(&#x27;revenue&#x27;))?group(&#x27;owns_property_choice&#x27;,&#x27;#e-own&#x27;):true;
+ if(!a||!b||!c){const f=form.querySelector(`input[name=&quot;${!a?&#x27;revenue&#x27;:!b?&#x27;timing&#x27;:&#x27;owns_property_choice&#x27;}&quot;]`);f&amp;&amp;f.focus();return;}
+ track(&#x27;form_step_completed&#x27;,{step:2,revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});fb(&#x27;QuizStep2&#x27;,{revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});store.set({revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;),owns:val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;});show(3,{push:true});
+}
+function under(){
+ const r=val(&#x27;revenue&#x27;),low=CFG.underOneM.includes(r),mid=CFG.underTwoM.includes(r)&amp;&amp;!low;
+ const box=$(&#x27;#under&#x27;),box1=$(&#x27;#under1&#x27;),own=$(&#x27;#own&#x27;);
+ if(mid&amp;&amp;box.hidden)track(&#x27;under2m_message_shown&#x27;);
+ if(low&amp;&amp;box1.hidden)track(&#x27;under1m_message_shown&#x27;);
+ box.hidden=!mid;box1.hidden=!low;own.hidden=!low;
+ if(!low){$$(&#x27;input[name=&quot;owns_property_choice&quot;]&#x27;,form).forEach(i=&gt;{i.checked=false;});$(&#x27;#e-own&#x27;).hidden=true;}
+}
+/* step 3 */
+const F={
+ name:{el:&#x27;#f-name&#x27;,err:&#x27;#e-name&#x27;,check:v=&gt;v.trim().length&lt;2?(v.trim()?&#x27;Enter your full name.&#x27;:&#x27;Enter your full name.&#x27;):&#x27;&#x27;},
+ email:{el:&#x27;#f-email&#x27;,err:&#x27;#e-email&#x27;,check:v=&gt;/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?&#x27;&#x27;:&#x27;Enter a valid email address, like name@example.com.&#x27;},
+ phone:{el:&#x27;#f-phone&#x27;,err:&#x27;#e-phone&#x27;,check:v=&gt;{let d=v.replace(/\D/g,&#x27;&#x27;);if(d.length===11&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);return d.length===10?&#x27;&#x27;:&#x27;Enter a 10-digit phone number.&#x27;;}},
+ state:{el:&#x27;#f-state&#x27;,err:&#x27;#e-state&#x27;,check:v=&gt;v?&#x27;&#x27;:&#x27;Select your state.&#x27;}
+,
+ web:{el:&#x27;#f-web&#x27;,err:&#x27;#e-web&#x27;,check:v=&gt;v.trim().length&lt;2?&#x27;Enter your company website or name.&#x27;:&#x27;&#x27;}
+};
+const ICON=&#x27;&lt;svg width=&quot;14&quot; height=&quot;14&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;&#x27;;
+function check(k,silent){
+ const f=F[k],el=$(f.el),box=$(f.err),m=f.check(el.value);
+ if(m){el.setAttribute(&#x27;aria-invalid&#x27;,&#x27;true&#x27;);el.setAttribute(&#x27;aria-describedby&#x27;,box.id);box.innerHTML=ICON+m;box.hidden=false;if(!silent)track(&#x27;form_error&#x27;,{field:el.name,error:el.value.trim()?&#x27;invalid&#x27;:&#x27;required&#x27;});}
+ else clear(k);
+ return !m;
+}
+function clear(k){const f=F[k],el=$(f.el);el.removeAttribute(&#x27;aria-invalid&#x27;);el.removeAttribute(&#x27;aria-describedby&#x27;);$(f.err).hidden=true;}
+Object.keys(F).forEach(k=&gt;{const el=$(F[k].el);el.addEventListener(&#x27;blur&#x27;,()=&gt;check(k));el.addEventListener(&#x27;input&#x27;,()=&gt;{if(el.getAttribute(&#x27;aria-invalid&#x27;))clear(k);});el.addEventListener(&#x27;change&#x27;,()=&gt;{if(k===&#x27;state&#x27;)check(k);});});
+$(&#x27;#f-phone&#x27;).addEventListener(&#x27;input&#x27;,e=&gt;{let d=e.target.value.replace(/\D/g,&#x27;&#x27;);if(d.length&gt;10&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);d=d.slice(0,10);e.target.value=d.length&gt;6?`(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`:d.length&gt;3?`(${d.slice(0,3)}) ${d.slice(3)}`:d?`(${d}`:&#x27;&#x27;;});
+let lastPartial=&#x27;&#x27;;
+/* Partial lead signal: a valid phone or email on step 3. Event only, no contact details leave the page (lead routing of partials comes later). */
+function partial(){
+ if(sent||step!==3)return;
+ const ph=!F.phone.check($(&#x27;#f-phone&#x27;).value),em=!F.email.check($(&#x27;#f-email&#x27;).value);
+ if(!ph&amp;&amp;!em)return;
+ const key=(ph?&#x27;p&#x27;:&#x27;&#x27;)+(em?&#x27;e&#x27;:&#x27;&#x27;);if(key===lastPartial)return;lastPartial=key;
+ track(&#x27;partial_lead_captured&#x27;,{has_phone:ph,has_email:em,event_id:LEAD_ID});
+ if(!partialMeta){partialMeta=true;fb(&#x27;PartialLead&#x27;,{has_phone:ph,has_email:em},false,LEAD_ID);}
+}
+Object.keys(F).forEach(k=&gt;$(F[k].el).addEventListener(k===&#x27;state&#x27;?&#x27;change&#x27;:&#x27;blur&#x27;,()=&gt;setTimeout(partial,0)));
+/* final submit: validate, stamp the hidden fields, then let the native Webflow form send it */
+let sending=false;
+function readyToSend(){
+ const bad=[&#x27;name&#x27;,&#x27;phone&#x27;,&#x27;email&#x27;,&#x27;state&#x27;,&#x27;web&#x27;].filter(k=&gt;!check(k));
+ if(bad.length){$(F[bad[0]].el).focus();return false;}
+ return true;
+}
+function beforeSend(){
+ sending=true;$(&#x27;#go3&#x27;).classList.add(&#x27;asl-busy&#x27;);
+ stampHidden();track(&#x27;form_submit&#x27;,{event_id:LEAD_ID});
+}
+function onSuccess(){
+ if(sent)return;sent=true;
+ const rev=val(&#x27;revenue&#x27;),shop_type=val(&#x27;shop_type&#x27;),timing=val(&#x27;timing&#x27;),web=($(&#x27;#f-web&#x27;).value||&#x27;&#x27;).trim();
+ try{localStorage.setItem(&#x27;sc_lp_handoff&#x27;,JSON.stringify({lead_id:LEAD_ID,shop_type,revenue:rev,shop:web.slice(0,60),t:Date.now()}));sessionStorage.setItem(&#x27;sc_lead_fired_&#x27;+LEAD_ID,&#x27;1&#x27;);}catch(e){}
+ document.body.classList.add(&#x27;asl-submitted&#x27;);dockState();
+ track(&#x27;form_submit_success&#x27;,{event_id:LEAD_ID,shop_type,revenue:rev,timing,under_2m:CFG.underTwoM.includes(rev)});
+ fb(&#x27;Lead&#x27;,{content_name:CFG.leadName,shop_type,revenue:rev},true,LEAD_ID);
+ if(timing===&#x27;exploring&#x27;)track(&#x27;keep_in_touch_opt_in&#x27;);
+ store.clear();
+ setTimeout(()=&gt;{location.assign(CFG.tyPath);},CFG.redirectDelay);
+}
+function onFail(){sending=false;$(&#x27;#go3&#x27;).classList.remove(&#x27;asl-busy&#x27;);track(&#x27;form_submit_error&#x27;,{event_id:LEAD_ID});}
+{/* Webflow shows .w-form-done on success and .w-form-fail on failure, by setting an inline display style */
+ const wrap=form.closest(&#x27;.w-form&#x27;);
+ if(wrap){const done=wrap.querySelector(&#x27;.w-form-done&#x27;),fail=wrap.querySelector(&#x27;.w-form-fail&#x27;);
+  const shown=el=&gt;el&amp;&amp;el.style.display&amp;&amp;el.style.display!==&#x27;none&#x27;;
+  if(done)new MutationObserver(()=&gt;{if(shown(done))onSuccess();}).observe(done,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});
+  if(fail)new MutationObserver(()=&gt;{if(shown(fail))onFail();}).observe(fail,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});}}
+
+/* events */
+form.addEventListener(&#x27;pointerdown&#x27;,e=&gt;{ptr=!!e.target.closest(&#x27;.asl-chip&#x27;);});
+form.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+ ptr=false;
+ if(e.key===&#x27;Enter&#x27;&amp;&amp;e.target.type===&#x27;radio&#x27;){e.preventDefault();e.target.checked=true;e.target.dispatchEvent(new Event(&#x27;change&#x27;,{bubbles:true}));if(step===1)go1();else if(step===2){const n=e.target.name;if(n===&#x27;revenue&#x27;)form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;).focus();else go2();}}
+});
+form.addEventListener(&#x27;click&#x27;,e=&gt;{
+ const t=e.target;
+ if(t.matches(&#x27;input[type=radio]&#x27;)&amp;&amp;step===1&amp;&amp;ptr){ptr=false;setTimeout(go1,300);}
+ const c=t.closest(&#x27;[data-continue]&#x27;);
+ if(c){const k=c.dataset.continue;if(k===&#x27;1&#x27;)go1();else if(k===&#x27;rev&#x27;){const r=form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;);r&amp;&amp;r.focus();}else go2();}
+});
+form.addEventListener(&#x27;change&#x27;,e=&gt;{
+ const n=e.target.name;
+ if(n===&#x27;revenue&#x27;){under();$(&#x27;#e-rev&#x27;).hidden=true;}
+ if(n===&#x27;owns_property_choice&#x27;){$(&#x27;#e-own&#x27;).hidden=true;}
+ if(n===&#x27;timing&#x27;){$(&#x27;#e-time&#x27;).hidden=true;$(&#x27;#explore&#x27;).hidden=e.target.value!==&#x27;exploring&#x27;;}
+});
+form.addEventListener(&#x27;submit&#x27;,e=&gt;{
+ if(step===1){e.preventDefault();e.stopPropagation();go1();return;}
+ if(step===2){e.preventDefault();e.stopPropagation();go2();return;}
+ if(sending||!readyToSend()){e.preventDefault();e.stopPropagation();return;}
+ beforeSend();/* not stopped: Webflow&#x27;s own handler now sends the form */
+},true);
+$(&#x27;#go2&#x27;).addEventListener(&#x27;click&#x27;,go2);
+$(&#x27;#back&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;history.back());
+addEventListener(&#x27;popstate&#x27;,e=&gt;{let n=(e.state&amp;&amp;e.state.step)||1;if(n===step||n&gt;3)return;if(n&lt;step)track(&#x27;form_back&#x27;,{step:n});show(n);});
+history.replaceState({step:1},&#x27;&#x27;);
+if(saved&amp;&amp;saved.shop_type){
+ const setR=(n,v)=&gt;{const r=form.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;][value=&quot;&#x27;+v+&#x27;&quot;]&#x27;);if(r)r.checked=true;return !!r;};
+ if(setR(&#x27;shop_type&#x27;,saved.shop_type)){
+  let to=2;
+  const okR=saved.revenue&amp;&amp;setR(&#x27;revenue&#x27;,saved.revenue),okT=saved.timing&amp;&amp;setR(&#x27;timing&#x27;,saved.timing);
+  if(okR&amp;&amp;okT)to=3;
+  if(saved.owns)setR(&#x27;owns_property_choice&#x27;,saved.owns);
+  if(to===3&amp;&amp;CFG.underOneM.includes(saved.revenue)&amp;&amp;!saved.owns)to=2;
+  under();$(&#x27;#explore&#x27;).hidden=val(&#x27;timing&#x27;)!==&#x27;exploring&#x27;;
+  resumed=true;for(let s=2;s&lt;=to;s++)history.pushState({step:s},&#x27;&#x27;);
+  show(to,{silent:true});track(&#x27;form_resumed&#x27;,{step:to});
+ }
+}
+if(!resumed){show(1,{silent:true});track(&#x27;form_step_viewed&#x27;,{step:1});}
+
+/* sticky bar + closing CTA */
+function dockState(){const on=!inView&amp;&amp;!document.body.classList.contains(&#x27;asl-submitted&#x27;);dock.classList.toggle(&#x27;asl-show&#x27;,on);dock.setAttribute(&#x27;aria-hidden&#x27;,String(!on));$(&#x27;.asl-btn&#x27;,dock).tabIndex=on?0:-1;}
+{const seen=new Map(),io=new IntersectionObserver(es=&gt;{es.forEach(e=&gt;seen.set(e.target,e.isIntersecting));inView=[...seen.values()].some(Boolean);dockState();},{threshold:0});io.observe(form);const fin=$(&#x27;.asl-fin-card&#x27;);fin&amp;&amp;io.observe(fin);}
+$$(&#x27;[data-cta]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{{const src=b.dataset.cta||&#x27;dock&#x27;;track(&#x27;cta_click&#x27;,{source:src});if(src===&#x27;dock&#x27;||src===&#x27;closing&#x27;)track(&#x27;sticky_cta_click&#x27;,{source:src});}toCard();setTimeout(()=&gt;{const c=firstCtl();c&amp;&amp;c.focus({preventScroll:true});},reduce?0:520);}));
+
+/* marquee: clone the set once so the loop is seamless */
+{const set=$(&#x27;.asl-mq-set&#x27;),cl=set.cloneNode(true);cl.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);$$(&#x27;img&#x27;,cl).forEach(i=&gt;i.alt=&#x27;&#x27;);set.after(cl);}
+/* owner stories: manual tabs */
+{const sl=$$(&#x27;.asl-tm&#x27;),tb=$$(&#x27;.asl-tabs button&#x27;);let cur=0;
+ const go=(n,f)=&gt;{cur=(n+sl.length)%sl.length;sl.forEach((e,i)=&gt;{e.classList.toggle(&#x27;asl-on&#x27;,i===cur);e.setAttribute(&#x27;aria-hidden&#x27;,String(i!==cur));});tb.forEach((b,i)=&gt;{b.classList.toggle(&#x27;asl-on&#x27;,i===cur);b.setAttribute(&#x27;aria-selected&#x27;,String(i===cur));b.tabIndex=i===cur?0:-1;});if(f)tb[cur].focus({preventScroll:true});track(&#x27;story_view&#x27;,{story:cur});};
+ tb.forEach((b,i)=&gt;{b.addEventListener(&#x27;click&#x27;,()=&gt;go(i));b.addEventListener(&#x27;keydown&#x27;,e=&gt;{const k=e.key;if(k===&#x27;ArrowRight&#x27;||k===&#x27;ArrowLeft&#x27;||k===&#x27;Home&#x27;||k===&#x27;End&#x27;){e.preventDefault();go(k===&#x27;Home&#x27;?0:k===&#x27;End&#x27;?sl.length-1:cur+(k===&#x27;ArrowRight&#x27;?1:-1),true);}});});}
+/* reveal */
+const io=new IntersectionObserver(es=&gt;es.forEach(e=&gt;{if(e.isIntersecting){e.target.classList.add(&#x27;asl-in&#x27;);io.unobserve(e.target);}}),{rootMargin:&#x27;0px 0px -80px 0px&#x27;,threshold:.04});
+$$(&#x27;.asl-r&#x27;).forEach(e=&gt;io.observe(e));
+})();
+&lt;/script&gt;</textarea></details></div></section><section class="panel" data-t="electrical" hidden><div class="embed"><div class="top"><div><span class="tag">Electrical</span><h3>01 Hero headline</h3><p class="muted">Adds the one style line that shows the description on phones. The headline in it is still your current one.</p></div><button class="btn" data-copy="c-electrical-01">Copy</button></div><details><summary>Show the code (673 characters)</summary><textarea id="c-electrical-01" readonly spellcheck="false">&lt;!-- SourceCo LP | Electrical | 01 Hero headline | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: the hero description now shows on phones too */@container asl-page (max-width:767px){.asl-lede{display:block;margin-top:12px;max-width:none;font-size:15px;line-height:1.5}}&lt;/style&gt;&lt;div class=&quot;asl-lead&quot;&gt;&lt;h1 class=&quot;asl-h1 asl-rise asl-d1&quot; id=&quot;h1&quot;&gt;You Built a Great Electrical Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&lt;/h1&gt;&lt;p class=&quot;asl-lede asl-rise asl-d2&quot; id=&quot;sub&quot;&gt;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&lt;/p&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">Electrical</span><h3>02 Lead form (all 3 steps)</h3><p class="muted">New line under each button, and the Prefer email first? checkbox on the last step.</p></div><button class="btn" data-copy="c-electrical-02">Copy</button></div><details><summary>Show the code (9,853 characters)</summary><textarea id="c-electrical-02" readonly spellcheck="false">&lt;!-- SourceCo LP | Electrical | 02 Lead form (all 3 steps) | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: email-first option + step 3 reassurance */.asl-ef{display:flex;align-items:flex-start;gap:11px;margin:18px 0 0;padding:13px 14px;border:1px solid rgba(34,31,28,.16);border-radius:12px;font:400 13.5px/1.45 var(--font-text);color:var(--ink);cursor:pointer}.asl-ef input{width:18px;height:18px;margin:1px 0 0;flex:0 0 auto;accent-color:#221f1c}.asl-ef b{font-weight:600}.asl-assure3{margin-top:14px}&lt;/style&gt;&lt;style&gt;#stepLabel{white-space:nowrap}.asl-pane h2,.asl-pane legend{text-wrap:balance}&lt;/style&gt;&lt;div class=&quot;asl-plate asl-form&quot; role=&quot;group&quot; aria-label=&quot;Confidential valuation request&quot;&gt;&lt;div class=&quot;asl-f-head&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-back&quot; id=&quot;back&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot; transform=&quot;rotate(180 8 8)&quot;/&gt;&lt;/svg&gt;Back&lt;/button&gt;&lt;p class=&quot;asl-f-kick&quot; id=&quot;kick&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#lock2&quot;/&gt;&lt;/svg&gt;Confidential valuation request&lt;/p&gt;&lt;span class=&quot;asl-f-step&quot; id=&quot;stepLabel&quot;&gt;Step 1 of 3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;asl-prog&quot; aria-hidden=&quot;true&quot;&gt;&lt;i class=&quot;asl-on&quot;&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;p class=&quot;asl-resume&quot; id=&quot;resume&quot; hidden&gt;Welcome back. Your answers are saved.&lt;/p&gt;&lt;div class=&quot;asl-panes&quot; id=&quot;panes&quot;&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;1&quot;&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q1&quot; tabindex=&quot;-1&quot;&gt;What kind of electrical work do you do?&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;Three quick steps. About a minute.&lt;/p&gt;&lt;fieldset class=&quot;asl-chips asl-c1&quot; aria-labelledby=&quot;q1&quot;&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;residential&quot; autocomplete=&quot;off&quot; aria-required=&quot;true&quot;&gt;&lt;span&gt;Residential service&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;commercial&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Commercial &amp;amp; industrial&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;both&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Both&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;other&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Other&lt;/span&gt;&lt;/label&gt;&lt;/fieldset&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;1&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;2&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q2&quot; tabindex=&quot;-1&quot;&gt;Two quick details&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;So we can match you with buyers who fit.&lt;/p&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-rev&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-rev&quot;&gt;Annual revenue&lt;small&gt;Most recent year. A rough number is fine.&lt;/small&gt;&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c3&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;under-1m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Under $1M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;1m-2m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$1M – $2M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;2m-5m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$2M – $5M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;5m-10m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$5M – $10M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;10m-15m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$10M – $15M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;15m-plus&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$15M +&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;rev&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-rev&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose your annual revenue.&lt;/p&gt;&lt;/fieldset&gt;&lt;p class=&quot;asl-note&quot; id=&quot;under&quot; role=&quot;status&quot; hidden&gt;&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Most of our buyers look for companies with $1.2M+ in annual revenue. You can still continue and we will tell you whether a match is likely.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;asl-note&quot; id=&quot;under1&quot; role=&quot;status&quot; hidden&gt;
+&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;
+&lt;span&gt;Most of our buyers look for companies with $1.2M+ in annual revenue, so a match for the business alone is less likely. You can still continue. If you own the property your company runs from, we can help you sell that too.&lt;/span&gt;
+&lt;/p&gt;
+&lt;fieldset class=&quot;asl-grp&quot; id=&quot;own&quot; aria-labelledby=&quot;l-own&quot; hidden&gt;
+&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-own&quot;&gt;Do you own the property your company runs from?&lt;/legend&gt;
+&lt;div class=&quot;asl-chips&quot; style=&quot;grid-template-columns:repeat(2,1fr)&quot;&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;yes&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Yes, I own it&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;no&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;No, I rent&lt;/span&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;p class=&quot;asl-gerr&quot; id=&quot;e-own&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Tell us if you own the property.&lt;/p&gt;
+&lt;/fieldset&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-time&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-time&quot;&gt;When are you thinking of selling?&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c6&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;asap&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;As soon as possible&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;6-months&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within 6 months&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;over-1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;More than a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;exploring&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Just exploring&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;time&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gentle&quot; id=&quot;explore&quot; hidden&gt;Just exploring is fine. Alia from SourceCo will call you about what buyers in electrical contracting look for and how they would value your company. Expect her call soon.&lt;/p&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-time&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose when you are thinking of selling.&lt;/p&gt;&lt;/fieldset&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-btn&quot; id=&quot;go2&quot;&gt;Continue&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;3&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q3&quot; tabindex=&quot;-1&quot;&gt;Last step: where can Alia reach you?&lt;/h2&gt;&lt;div class=&quot;asl-fields&quot;&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-name&quot;&gt;Full name&lt;/label&gt;&lt;input id=&quot;f-name&quot; name=&quot;full_name&quot; data-name=&quot;full_name&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; inputmode=&quot;text&quot; placeholder=&quot;First and last name&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-name&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-phone&quot;&gt;Mobile phone&lt;small&gt;Best number to reach you&lt;/small&gt;&lt;/label&gt;&lt;input id=&quot;f-phone&quot; name=&quot;phone&quot; data-name=&quot;phone&quot; type=&quot;tel&quot; autocomplete=&quot;tel&quot; inputmode=&quot;tel&quot; placeholder=&quot;(555) 555-5555&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-phone&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-email&quot;&gt;Email&lt;/label&gt;&lt;input id=&quot;f-email&quot; name=&quot;email&quot; data-name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; inputmode=&quot;email&quot; placeholder=&quot;you@yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-email&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-state&quot;&gt;State&lt;/label&gt;&lt;div class=&quot;asl-sel&quot;&gt;&lt;select id=&quot;f-state&quot; name=&quot;state&quot; data-name=&quot;state&quot; autocomplete=&quot;address-level1&quot; aria-required=&quot;true&quot;&gt;&lt;option value=&quot;&quot;&gt;Select state&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-state&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f asl-wide&quot;&gt;&lt;label for=&quot;f-web&quot;&gt;Company website or name&lt;/label&gt;&lt;input id=&quot;f-web&quot; name=&quot;website&quot; data-name=&quot;website&quot; type=&quot;text&quot; autocomplete=&quot;organization&quot; inputmode=&quot;text&quot; autocapitalize=&quot;off&quot; spellcheck=&quot;false&quot; placeholder=&quot;yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-web&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;label class=&quot;asl-ef&quot; for=&quot;f-emailfirst&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;f-emailfirst&quot; name=&quot;email_first&quot; data-name=&quot;email_first&quot; value=&quot;yes&quot;&gt;&lt;span&gt;&lt;b&gt;Prefer email first?&lt;/b&gt; Alia will email you before she calls.&lt;/span&gt;&lt;/label&gt;&lt;div id=&quot;hidden&quot; hidden&gt;&lt;/div&gt;&lt;p class=&quot;asl-priv&quot;&gt;&lt;svg class=&quot;asl-ckp&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;10&quot;/&gt;&lt;path d=&quot;M6 10.2l2.8 2.7 5.2-5.6&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Your name stays private. A buyer only gets it if you approve.&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;asl-callrow&quot;&gt;&lt;img src=&quot;https://cdn.prod.website-files.com/66851dae8a2c8c3f8cd9c703/6ae8dc2b62472bb6cc4073aa_lp-auto-shop-team-alia-face-p-130x130q80.jpg&quot; alt=&quot;&quot; width=&quot;130&quot; height=&quot;130&quot;&gt;&lt;p&gt;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile within &lt;span data-window&gt;1 business day&lt;/span&gt; to walk you through what buyers would pay. We do not call your office.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;submit&quot; class=&quot;asl-btn&quot; id=&quot;go3&quot;&gt;See What Buyers Would Pay&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure asl-assure3&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;p class=&quot;asl-consent&quot;&gt;By submitting, you agree to a confidential follow-up from SourceCo. We only share your details with buyers you approve, and we never sell them. &lt;a href=&quot;#privacy&quot;&gt;Privacy Policy&lt;/a&gt; and &lt;a href=&quot;#terms&quot;&gt;Terms&lt;/a&gt;.&lt;/p&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">Electrical</span><h3>09 Page script (config, tracking, form logic)</h3><p class="muted">The five hero options behind ?v=, plus contact_preference sent with every lead. emailFirst:false at the top hides the email-first box.</p></div><button class="btn" data-copy="c-electrical-09">Copy</button></div><details><summary>Show the code (22,141 characters)</summary><textarea id="c-electrical-09" readonly spellcheck="false">&lt;!-- SourceCo LP | Electrical | 09 Page script (config, tracking, form logic) | paste replaces the whole embed --&gt;
+&lt;script&gt;
+(()=&gt;{
+&#x27;use strict&#x27;;
+/* ---------- config (edit here) ---------- */
+const CFG={emailFirst:true,/* false hides the Prefer email first? box */contactWindow:&#x27;1 business day&#x27;,underTwoM:[&#x27;under-1m&#x27;,&#x27;1m-2m&#x27;],underOneM:[&#x27;under-1m&#x27;],metaDataset:&#x27;1511173720348243&#x27;,tyPath:&#x27;/lp-electrical-thank-you&#x27;,redirectDelay:450,gtag:true,leadName:&#x27;electrical_lp&#x27;};
+const V={
+default:{h:&#x27;You Built a Great Electrical Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;},
+compare:{h:&#x27;You Built a Great Electrical Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. See which vetted buyers fit, and compare them before you decide anything. The buyer pays our fee.&#x27;,p:&#x27;Compare the buyers who fit&#x27;},
+call:{h:&#x27;You Built a Great Electrical Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;,c:&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile from (614) 699-5764 within &lt;span data-window&gt;1 business day&lt;/span&gt;. A short call, no obligation. We do not call your office.&#x27;},
+someday:{h:&#x27;Not Ready to Sell? &lt;em&gt;Know Your Number&lt;/em&gt; Anyway.&#x27;,s:&#x27;Plenty of owners we talk to are five or ten years out. Seeing what vetted buyers would pay costs nothing and commits you to nothing.&#x27;},
+control:{h:&#x27;Electrical Contractor Doing &lt;em&gt;$2M+&lt;/em&gt;? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches residential, commercial and industrial electrical contractors with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+wonder:{h:&#x27;Ever Wondered What Buyers Would Pay for Your Electrical Company?&#x27;,s:&#x27;Find out who would compete for it. Nothing to sign, nobody finds out, and you can walk away any time. The buyer pays our fee.&#x27;},
+terms:{h:&#x27;Get Vetted Buyers &lt;em&gt;Competing&lt;/em&gt; for Your Electrical Company.&#x27;,s:&#x27;Don’t let one caller tell you what it’s worth. No broker fees, no clean books needed to start, and you decide what happens next.&#x27;},
+main:{h:&#x27;Electrical Contractors Are in Demand. See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches electrical contractors with vetted buyers. The buyer pays our fee, and nothing goes public until you decide.&#x27;},
+a:{h:&#x27;You Hold the License. You Can Still Sell.&#x27;,s:&#x27;License handoffs are a normal part of selling an electrical company. SourceCo matches you privately with buyers who fit how and when you want to step back. The buyer pays our fee.&#x27;},
+b:{h:&#x27;What’s Your Electrical Company Really Worth?&#x27;,s:&#x27;Answer a few quick questions and Alia from SourceCo walks you through what credible buyers could pay.&#x27;},
+c:{h:&#x27;Commercial Electrical Contractor? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches commercial and industrial electrical contractors with vetted buyers. Not a broker. The buyer pays our fee.&#x27;},
+d:{h:&#x27;&lt;em&gt;$2M+&lt;/em&gt; Electrical Company? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches residential, commercial and industrial electrical contractors with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+e:{h:&#x27;Electrical Contractors: Know Your Exit Options.&#x27;,s:&#x27;SourceCo shows you which vetted buyers fit, privately. Nothing goes public until you decide.&#x27;},
+f:{h:&#x27;Residential Electrical Company Doing &lt;em&gt;$2M+&lt;/em&gt;? See What Buyers Would Pay.&#x27;,s:&#x27;Home services buyers are adding electrical. SourceCo matches you privately with the ones who fit. The buyer pays our fee.&#x27;},
+number:{h:&#x27;What Would Buyers Pay for Your &lt;em&gt;Electrical Company&lt;/em&gt;?&#x27;,s:&#x27;Answer 3 quick questions and we’ll walk you through what vetted buyers would pay. We’re not a broker, and buyers pay our fee.&#x27;},
+words:{h:&#x27;Not a Broker. Not a Cold Call. See What &lt;em&gt;Buyers Would Pay&lt;/em&gt;.&#x27;,s:&#x27;We name the buyers, they pay our fee, and nothing about your company is shared until you say so. 3 quick questions to start.&#x27;},
+pride:{h:&#x27;You Built a Great Electrical Company. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;}
+};
+const STATES=&#x27;Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,District of Columbia,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming&#x27;.split(&#x27;,&#x27;);
+const TP=[&#x27;utm_source&#x27;,&#x27;utm_medium&#x27;,&#x27;utm_campaign&#x27;,&#x27;utm_content&#x27;,&#x27;utm_term&#x27;,&#x27;fbclid&#x27;,&#x27;gclid&#x27;,&#x27;ad_id&#x27;,&#x27;adset_id&#x27;,&#x27;campaign_id&#x27;,&#x27;ad_name&#x27;,&#x27;adset_name&#x27;,&#x27;campaign_name&#x27;,&#x27;placement&#x27;,&#x27;utm_id&#x27;,&#x27;site_source&#x27;];
+
+const $=(s,r=document)=&gt;r.querySelector(s),$$=(s,r=document)=&gt;[...r.querySelectorAll(s)];
+const reduce=matchMedia(&#x27;(prefers-reduced-motion:reduce)&#x27;).matches;
+const dl=window.dataLayer=window.dataLayer||[];
+const gt=(n,p)=&gt;{try{if(CFG.gtag&amp;&amp;typeof window.gtag===&#x27;function&#x27;)window.gtag(&#x27;event&#x27;,n,{...p,lp:&#x27;electrical&#x27;});}catch(e){}};
+const track=(event,p={})=&gt;{dl.push({event,lp:&#x27;electrical&#x27;,...p});gt(event,p);};
+/* Meta: send to the SourceCo Dataset only (the one the ad sets optimise on). A plain track() would go to both datasets and double count. */
+const fb=(n,p,std,id)=&gt;{try{if(window.fbq)window.fbq(std?&#x27;trackSingle&#x27;:&#x27;trackSingleCustom&#x27;,CFG.metaDataset,n,p||{},id?{eventID:id}:undefined);}catch(e){}};
+const SK=&#x27;sc_electrical_lp_v1&#x27;,TTL=14*864e5;
+const store={get(){try{const d=JSON.parse(localStorage.getItem(SK)||&#x27;null&#x27;);return d&amp;&amp;Date.now()-d.t&lt;TTL?d:null;}catch(e){return null;}},set(o){try{localStorage.setItem(SK,JSON.stringify({...(store.get()||{}),...o,t:Date.now()}));}catch(e){}},clear(){try{localStorage.removeItem(SK);}catch(e){}}};
+const saved=store.get();
+const LEAD_ID=(saved&amp;&amp;saved.id)||(window.crypto&amp;&amp;crypto.randomUUID?crypto.randomUUID():&#x27;l&#x27;+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+store.set({id:LEAD_ID});
+window.SOURCECO_LP={config:CFG,track,leadId:LEAD_ID};
+
+/* ---------- message match + tracking passthrough ---------- */
+const qp=new URLSearchParams(location.search);
+const v=V[(qp.get(&#x27;v&#x27;)||&#x27;default&#x27;).toLowerCase()]||V.default;
+$(&#x27;#h1&#x27;).innerHTML=v.h;$(&#x27;#sub&#x27;).textContent=v.s;
+/* test variants: p swaps the first hero checkmark, c swaps the step 3 call line */
+if(v.p){const li=$(&#x27;.asl-pr li&#x27;);if(li&amp;&amp;li.lastChild)li.lastChild.textContent=v.p;}
+if(v.c){const cr=$(&#x27;.asl-callrow p&#x27;);if(cr)cr.innerHTML=v.c;}
+$$(&#x27;[data-window]&#x27;).forEach(e=&gt;e.textContent=CFG.contactWindow);
+const hid=$(&#x27;#hidden&#x27;);
+const AK=&#x27;sc_lp_attr_v1&#x27;;/* ad ids and UTMs from the ad click, kept 7 days so a later visit or reload still carries them */
+const attr=(()=&gt;{let o={};try{const d=JSON.parse(localStorage.getItem(AK)||&#x27;null&#x27;);if(d&amp;&amp;Date.now()-d.t&lt;7*864e5)o=d.v||{};}catch(e){}
+ const keep=k=&gt;TP.includes(k)||k.startsWith(&#x27;utm_&#x27;);let ch=false;qp.forEach((v2,k)=&gt;{if(keep(k)&amp;&amp;v2){o[k]=v2;ch=true;}});
+ if(ch){try{localStorage.setItem(AK,JSON.stringify({t:Date.now(),v:o}));}catch(e){}}return o;})();
+const ck=n=&gt;{const m=document.cookie.match(new RegExp(&#x27;(?:^|; )&#x27;+n+&#x27;=([^;]*)&#x27;));return m?decodeURIComponent(m[1]):&#x27;&#x27;;};
+const hidden={};
+const addHidden=(n,v2)=&gt;{let i=hid.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;]&#x27;);if(!i){i=document.createElement(&#x27;input&#x27;);i.type=&#x27;hidden&#x27;;i.name=n;i.setAttribute(&#x27;data-name&#x27;,n);hid.append(i);}if(v2!==undefined)i.value=v2;hidden[n]=i;return i;};
+[...new Set([...TP,...Object.keys(attr)])].forEach(k=&gt;addHidden(k,attr[k]||&#x27;&#x27;));
+[&#x27;lead_id&#x27;,&#x27;event_id&#x27;,&#x27;lead_status&#x27;,&#x27;page_variant&#x27;,&#x27;keep_in_touch&#x27;,&#x27;owns_property&#x27;,&#x27;lp_name&#x27;,&#x27;page_url&#x27;,&#x27;fbp&#x27;,&#x27;fbc&#x27;,&#x27;contact_preference&#x27;].forEach(k=&gt;addHidden(k,&#x27;&#x27;));
+function stampHidden(){
+ const fbclid=(attr.fbclid||qp.get(&#x27;fbclid&#x27;)||&#x27;&#x27;);
+ let fbc=ck(&#x27;_fbc&#x27;);if(!fbc&amp;&amp;fbclid)fbc=&#x27;fb.1.&#x27;+Date.now()+&#x27;.&#x27;+fbclid;
+ const set={lead_id:LEAD_ID,event_id:LEAD_ID,lead_status:&#x27;complete&#x27;,page_variant:qp.get(&#x27;v&#x27;)||&#x27;default&#x27;,keep_in_touch:val(&#x27;timing&#x27;)===&#x27;exploring&#x27;?&#x27;1&#x27;:&#x27;0&#x27;,owns_property:CFG.underOneM.includes(val(&#x27;revenue&#x27;))?(val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;):&#x27;&#x27;,lp_name:CFG.leadName,page_url:location.href.split(&#x27;#&#x27;)[0],fbp:ck(&#x27;_fbp&#x27;),fbc,contact_preference:(CFG.emailFirst&amp;&amp;$(&#x27;#f-emailfirst&#x27;)&amp;&amp;$(&#x27;#f-emailfirst&#x27;).checked)?&#x27;email_first&#x27;:&#x27;call&#x27;};
+ /* Marketplace adapter: the owner-lead intake reads these exact names and display strings (same as the /lp-request form), so Timeline, revenue and industry map with no marketplace change. The raw chip values above stay as the clean keys. */
+ const REVL={&#x27;under-1m&#x27;:&#x27;Under $1M (not a great fit)&#x27;,&#x27;1m-2m&#x27;:&#x27;$1M - $2M&#x27;,&#x27;2m-5m&#x27;:&#x27;$2M - $5M&#x27;,&#x27;5m-10m&#x27;:&#x27;$5M - $10M&#x27;,&#x27;10m-15m&#x27;:&#x27;$10M - $15M&#x27;,&#x27;15m-plus&#x27;:&#x27;$15M +&#x27;};
+ const TIML={&#x27;asap&#x27;:&#x27;ASAP&#x27;,&#x27;6-months&#x27;:&#x27;Within 6 months&#x27;,&#x27;1-year&#x27;:&#x27;Within a year&#x27;,&#x27;over-1-year&#x27;:&#x27;More than a year&#x27;,&#x27;exploring&#x27;:&#x27;Just exploring&#x27;};
+ set[&#x27;Estimated Annual Revenue&#x27;]=REVL[val(&#x27;revenue&#x27;)]||&#x27;&#x27;;set[&#x27;Timeline&#x27;]=TIML[val(&#x27;timing&#x27;)]||&#x27;&#x27;;set[&#x27;industry&#x27;]=&#x27;Electrical contractor&#x27;;
+ Object.keys(set).forEach(k=&gt;addHidden(k,set[k]));
+ TP.forEach(k=&gt;{const i=addHidden(k);if(!i.value&amp;&amp;(attr[k]||qp.get(k)))i.value=attr[k]||qp.get(k);});
+}
+$(&#x27;#f-state&#x27;).append(...STATES.map(s=&gt;new Option(s,s)));
+/* Round 3: email-first. Swaps the call line and is sent as contact_preference. */
+{const ef=$(&#x27;#f-emailfirst&#x27;),cr=$(&#x27;.asl-callrow p&#x27;);if(ef&amp;&amp;!CFG.emailFirst){ef.closest(&#x27;label&#x27;).style.display=&#x27;none&#x27;;}else if(ef&amp;&amp;cr){const callHtml=cr.innerHTML,mailHtml=&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will email you first, within &lt;span data-window&gt;&#x27;+CFG.contactWindow+&#x27;&lt;/span&gt;, and set up a time to talk that works for you.&#x27;;ef.addEventListener(&#x27;change&#x27;,()=&gt;{cr.innerHTML=ef.checked?mailHtml:callHtml;track(&#x27;email_first_toggled&#x27;,{on:ef.checked});});}}
+
+/* ---------- form state machine ---------- */
+const form=$(&#x27;#lead&#x27;),panes=$(&#x27;#panes&#x27;),live=$(&#x27;#live&#x27;),dock=$(&#x27;#dock&#x27;);
+{const vw=+qp.get(&#x27;vw&#x27;);if(vw){const pg=$(&#x27;#page&#x27;),fit=()=&gt;{pg.style.width=vw+&#x27;px&#x27;;pg.style.zoom=document.documentElement.clientWidth/vw;};fit();addEventListener(&#x27;resize&#x27;,fit);addEventListener(&#x27;load&#x27;,fit);}}
+let step=1,ptr=false,sent=false,inView=true,resumed=false,partialMeta=false;
+const val=n=&gt;(form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||{}).value;
+const mobile=()=&gt;$(&#x27;#page&#x27;).clientWidth&lt;768;
+const heads={1:&#x27;#q1&#x27;,2:&#x27;#q2&#x27;,3:&#x27;#q3&#x27;};
+
+function toCard(smooth=true){const y=form.getBoundingClientRect().top+scrollY-(mobile()?12:24);scrollTo({top:Math.max(0,y),behavior:smooth&amp;&amp;!reduce?&#x27;smooth&#x27;:&#x27;auto&#x27;});}
+function firstCtl(){
+ const r=n=&gt;form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||form.querySelector(`input[name=&quot;${n}&quot;]`);
+ return step===1?r(&#x27;shop_type&#x27;):step===2?r(&#x27;revenue&#x27;):$(&#x27;#f-name&#x27;);
+}
+function show(n,o={}){
+ const h0=panes.offsetHeight,prev=step;step=n;panes.dataset.dir=n&lt;prev?&#x27;b&#x27;:&#x27;f&#x27;;
+ $$(&#x27;.asl-pane&#x27;,form).forEach(p=&gt;p.hidden=+p.dataset.step!==n);
+ $$(&#x27;.asl-prog i&#x27;,form).forEach((el,i)=&gt;el.classList.toggle(&#x27;asl-on&#x27;,i&lt;Math.min(n,3)));
+ $(&#x27;.asl-prog&#x27;,form).hidden=$(&#x27;.asl-f-head&#x27;,form).hidden=n===4;
+ $(&#x27;#back&#x27;).hidden=n&lt;2;$(&#x27;#kick&#x27;).hidden=n&gt;=2;$(&#x27;#resume&#x27;).hidden=!(resumed&amp;&amp;(n===2||n===3));
+ $(&#x27;#stepLabel&#x27;).textContent=&#x27;Step &#x27;+Math.min(n,3)+&#x27; of 3&#x27;;
+ const h1=panes.offsetHeight;
+ if(!reduce&amp;&amp;h0&amp;&amp;h0!==h1&amp;&amp;!o.silent){panes.style.overflow=&#x27;hidden&#x27;;panes.animate([{height:h0+&#x27;px&#x27;},{height:h1+&#x27;px&#x27;}],{duration:380,easing:&#x27;cubic-bezier(.16,1,.3,1)&#x27;}).onfinish=()=&gt;{panes.style.overflow=&#x27;&#x27;;};}
+ if(o.push)history.pushState({step:n},&#x27;&#x27;);
+ if(!o.silent){
+  if(n&lt;4)track(&#x27;form_step_viewed&#x27;,{step:n});
+  live.textContent=&#x27;&#x27;;setTimeout(()=&gt;{live.textContent=&#x27;Step &#x27;+n+&#x27; of 3&#x27;;},60);
+  const hd=$(heads[n]);hd&amp;&amp;hd.focus({preventScroll:true});
+  if(mobile()||form.getBoundingClientRect().top&lt;0)toCard();
+ }
+ dockState();
+}
+
+/* step 1 */
+function go1(){const s=val(&#x27;shop_type&#x27;);if(!s)return;track(&#x27;form_step_completed&#x27;,{step:1,shop_type:s});fb(&#x27;QuizStep1&#x27;,{shop_type:s});store.set({shop_type:s});show(2,{push:true});}
+/* step 2 */
+function group(n,id,msg){const ok=!!val(n);$(id).hidden=ok;if(!ok)track(&#x27;form_error&#x27;,{field:n,error:&#x27;required&#x27;});return ok;}
+function go2(){
+ const a=group(&#x27;revenue&#x27;,&#x27;#e-rev&#x27;),b=group(&#x27;timing&#x27;,&#x27;#e-time&#x27;),c=CFG.underOneM.includes(val(&#x27;revenue&#x27;))?group(&#x27;owns_property_choice&#x27;,&#x27;#e-own&#x27;):true;
+ if(!a||!b||!c){const f=form.querySelector(`input[name=&quot;${!a?&#x27;revenue&#x27;:!b?&#x27;timing&#x27;:&#x27;owns_property_choice&#x27;}&quot;]`);f&amp;&amp;f.focus();return;}
+ track(&#x27;form_step_completed&#x27;,{step:2,revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});fb(&#x27;QuizStep2&#x27;,{revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});store.set({revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;),owns:val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;});show(3,{push:true});
+}
+function under(){
+ const r=val(&#x27;revenue&#x27;),low=CFG.underOneM.includes(r),mid=CFG.underTwoM.includes(r)&amp;&amp;!low;
+ const box=$(&#x27;#under&#x27;),box1=$(&#x27;#under1&#x27;),own=$(&#x27;#own&#x27;);
+ if(mid&amp;&amp;box.hidden)track(&#x27;under2m_message_shown&#x27;);
+ if(low&amp;&amp;box1.hidden)track(&#x27;under1m_message_shown&#x27;);
+ box.hidden=!mid;box1.hidden=!low;own.hidden=!low;
+ if(!low){$$(&#x27;input[name=&quot;owns_property_choice&quot;]&#x27;,form).forEach(i=&gt;{i.checked=false;});$(&#x27;#e-own&#x27;).hidden=true;}
+}
+/* step 3 */
+const F={
+ name:{el:&#x27;#f-name&#x27;,err:&#x27;#e-name&#x27;,check:v=&gt;v.trim().length&lt;2?(v.trim()?&#x27;Enter your full name.&#x27;:&#x27;Enter your full name.&#x27;):&#x27;&#x27;},
+ email:{el:&#x27;#f-email&#x27;,err:&#x27;#e-email&#x27;,check:v=&gt;/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?&#x27;&#x27;:&#x27;Enter a valid email address, like name@example.com.&#x27;},
+ phone:{el:&#x27;#f-phone&#x27;,err:&#x27;#e-phone&#x27;,check:v=&gt;{let d=v.replace(/\D/g,&#x27;&#x27;);if(d.length===11&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);return d.length===10?&#x27;&#x27;:&#x27;Enter a 10-digit phone number.&#x27;;}},
+ state:{el:&#x27;#f-state&#x27;,err:&#x27;#e-state&#x27;,check:v=&gt;v?&#x27;&#x27;:&#x27;Select your state.&#x27;}
+,
+ web:{el:&#x27;#f-web&#x27;,err:&#x27;#e-web&#x27;,check:v=&gt;v.trim().length&lt;2?&#x27;Enter your company website or name.&#x27;:&#x27;&#x27;}
+};
+const ICON=&#x27;&lt;svg width=&quot;14&quot; height=&quot;14&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;&#x27;;
+function check(k,silent){
+ const f=F[k],el=$(f.el),box=$(f.err),m=f.check(el.value);
+ if(m){el.setAttribute(&#x27;aria-invalid&#x27;,&#x27;true&#x27;);el.setAttribute(&#x27;aria-describedby&#x27;,box.id);box.innerHTML=ICON+m;box.hidden=false;if(!silent)track(&#x27;form_error&#x27;,{field:el.name,error:el.value.trim()?&#x27;invalid&#x27;:&#x27;required&#x27;});}
+ else clear(k);
+ return !m;
+}
+function clear(k){const f=F[k],el=$(f.el);el.removeAttribute(&#x27;aria-invalid&#x27;);el.removeAttribute(&#x27;aria-describedby&#x27;);$(f.err).hidden=true;}
+Object.keys(F).forEach(k=&gt;{const el=$(F[k].el);el.addEventListener(&#x27;blur&#x27;,()=&gt;check(k));el.addEventListener(&#x27;input&#x27;,()=&gt;{if(el.getAttribute(&#x27;aria-invalid&#x27;))clear(k);});el.addEventListener(&#x27;change&#x27;,()=&gt;{if(k===&#x27;state&#x27;)check(k);});});
+$(&#x27;#f-phone&#x27;).addEventListener(&#x27;input&#x27;,e=&gt;{let d=e.target.value.replace(/\D/g,&#x27;&#x27;);if(d.length&gt;10&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);d=d.slice(0,10);e.target.value=d.length&gt;6?`(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`:d.length&gt;3?`(${d.slice(0,3)}) ${d.slice(3)}`:d?`(${d}`:&#x27;&#x27;;});
+let lastPartial=&#x27;&#x27;;
+/* Partial lead signal: a valid phone or email on step 3. Event only, no contact details leave the page (lead routing of partials comes later). */
+function partial(){
+ if(sent||step!==3)return;
+ const ph=!F.phone.check($(&#x27;#f-phone&#x27;).value),em=!F.email.check($(&#x27;#f-email&#x27;).value);
+ if(!ph&amp;&amp;!em)return;
+ const key=(ph?&#x27;p&#x27;:&#x27;&#x27;)+(em?&#x27;e&#x27;:&#x27;&#x27;);if(key===lastPartial)return;lastPartial=key;
+ track(&#x27;partial_lead_captured&#x27;,{has_phone:ph,has_email:em,event_id:LEAD_ID});
+ if(!partialMeta){partialMeta=true;fb(&#x27;PartialLead&#x27;,{has_phone:ph,has_email:em},false,LEAD_ID);}
+}
+Object.keys(F).forEach(k=&gt;$(F[k].el).addEventListener(k===&#x27;state&#x27;?&#x27;change&#x27;:&#x27;blur&#x27;,()=&gt;setTimeout(partial,0)));
+/* final submit: validate, stamp the hidden fields, then let the native Webflow form send it */
+let sending=false;
+function readyToSend(){
+ const bad=[&#x27;name&#x27;,&#x27;phone&#x27;,&#x27;email&#x27;,&#x27;state&#x27;,&#x27;web&#x27;].filter(k=&gt;!check(k));
+ if(bad.length){$(F[bad[0]].el).focus();return false;}
+ return true;
+}
+function beforeSend(){
+ sending=true;$(&#x27;#go3&#x27;).classList.add(&#x27;asl-busy&#x27;);
+ stampHidden();track(&#x27;form_submit&#x27;,{event_id:LEAD_ID});
+}
+function onSuccess(){
+ if(sent)return;sent=true;
+ const rev=val(&#x27;revenue&#x27;),shop_type=val(&#x27;shop_type&#x27;),timing=val(&#x27;timing&#x27;),web=($(&#x27;#f-web&#x27;).value||&#x27;&#x27;).trim();
+ try{localStorage.setItem(&#x27;sc_lp_handoff&#x27;,JSON.stringify({lead_id:LEAD_ID,shop_type,revenue:rev,shop:web.slice(0,60),t:Date.now()}));sessionStorage.setItem(&#x27;sc_lead_fired_&#x27;+LEAD_ID,&#x27;1&#x27;);}catch(e){}
+ document.body.classList.add(&#x27;asl-submitted&#x27;);dockState();
+ track(&#x27;form_submit_success&#x27;,{event_id:LEAD_ID,shop_type,revenue:rev,timing,under_2m:CFG.underTwoM.includes(rev)});
+ fb(&#x27;Lead&#x27;,{content_name:CFG.leadName,shop_type,revenue:rev},true,LEAD_ID);
+ if(timing===&#x27;exploring&#x27;)track(&#x27;keep_in_touch_opt_in&#x27;);
+ store.clear();
+ setTimeout(()=&gt;{location.assign(CFG.tyPath);},CFG.redirectDelay);
+}
+function onFail(){sending=false;$(&#x27;#go3&#x27;).classList.remove(&#x27;asl-busy&#x27;);track(&#x27;form_submit_error&#x27;,{event_id:LEAD_ID});}
+{/* Webflow shows .w-form-done on success and .w-form-fail on failure, by setting an inline display style */
+ const wrap=form.closest(&#x27;.w-form&#x27;);
+ if(wrap){const done=wrap.querySelector(&#x27;.w-form-done&#x27;),fail=wrap.querySelector(&#x27;.w-form-fail&#x27;);
+  const shown=el=&gt;el&amp;&amp;el.style.display&amp;&amp;el.style.display!==&#x27;none&#x27;;
+  if(done)new MutationObserver(()=&gt;{if(shown(done))onSuccess();}).observe(done,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});
+  if(fail)new MutationObserver(()=&gt;{if(shown(fail))onFail();}).observe(fail,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});}}
+
+/* events */
+form.addEventListener(&#x27;pointerdown&#x27;,e=&gt;{ptr=!!e.target.closest(&#x27;.asl-chip&#x27;);});
+form.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+ ptr=false;
+ if(e.key===&#x27;Enter&#x27;&amp;&amp;e.target.type===&#x27;radio&#x27;){e.preventDefault();e.target.checked=true;e.target.dispatchEvent(new Event(&#x27;change&#x27;,{bubbles:true}));if(step===1)go1();else if(step===2){const n=e.target.name;if(n===&#x27;revenue&#x27;)form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;).focus();else go2();}}
+});
+form.addEventListener(&#x27;click&#x27;,e=&gt;{
+ const t=e.target;
+ if(t.matches(&#x27;input[type=radio]&#x27;)&amp;&amp;step===1&amp;&amp;ptr){ptr=false;setTimeout(go1,300);}
+ const c=t.closest(&#x27;[data-continue]&#x27;);
+ if(c){const k=c.dataset.continue;if(k===&#x27;1&#x27;)go1();else if(k===&#x27;rev&#x27;){const r=form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;);r&amp;&amp;r.focus();}else go2();}
+});
+form.addEventListener(&#x27;change&#x27;,e=&gt;{
+ const n=e.target.name;
+ if(n===&#x27;revenue&#x27;){under();$(&#x27;#e-rev&#x27;).hidden=true;}
+ if(n===&#x27;owns_property_choice&#x27;){$(&#x27;#e-own&#x27;).hidden=true;}
+ if(n===&#x27;timing&#x27;){$(&#x27;#e-time&#x27;).hidden=true;$(&#x27;#explore&#x27;).hidden=e.target.value!==&#x27;exploring&#x27;;}
+});
+form.addEventListener(&#x27;submit&#x27;,e=&gt;{
+ if(step===1){e.preventDefault();e.stopPropagation();go1();return;}
+ if(step===2){e.preventDefault();e.stopPropagation();go2();return;}
+ if(sending||!readyToSend()){e.preventDefault();e.stopPropagation();return;}
+ beforeSend();/* not stopped: Webflow&#x27;s own handler now sends the form */
+},true);
+$(&#x27;#go2&#x27;).addEventListener(&#x27;click&#x27;,go2);
+$(&#x27;#back&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;history.back());
+addEventListener(&#x27;popstate&#x27;,e=&gt;{let n=(e.state&amp;&amp;e.state.step)||1;if(n===step||n&gt;3)return;if(n&lt;step)track(&#x27;form_back&#x27;,{step:n});show(n);});
+history.replaceState({step:1},&#x27;&#x27;);
+if(saved&amp;&amp;saved.shop_type){
+ const setR=(n,v)=&gt;{const r=form.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;][value=&quot;&#x27;+v+&#x27;&quot;]&#x27;);if(r)r.checked=true;return !!r;};
+ if(setR(&#x27;shop_type&#x27;,saved.shop_type)){
+  let to=2;
+  const okR=saved.revenue&amp;&amp;setR(&#x27;revenue&#x27;,saved.revenue),okT=saved.timing&amp;&amp;setR(&#x27;timing&#x27;,saved.timing);
+  if(okR&amp;&amp;okT)to=3;
+  if(saved.owns)setR(&#x27;owns_property_choice&#x27;,saved.owns);
+  if(to===3&amp;&amp;CFG.underOneM.includes(saved.revenue)&amp;&amp;!saved.owns)to=2;
+  under();$(&#x27;#explore&#x27;).hidden=val(&#x27;timing&#x27;)!==&#x27;exploring&#x27;;
+  resumed=true;for(let s=2;s&lt;=to;s++)history.pushState({step:s},&#x27;&#x27;);
+  show(to,{silent:true});track(&#x27;form_resumed&#x27;,{step:to});
+ }
+}
+if(!resumed){show(1,{silent:true});track(&#x27;form_step_viewed&#x27;,{step:1});}
+
+/* sticky bar + closing CTA */
+function dockState(){const on=!inView&amp;&amp;!document.body.classList.contains(&#x27;asl-submitted&#x27;);dock.classList.toggle(&#x27;asl-show&#x27;,on);dock.setAttribute(&#x27;aria-hidden&#x27;,String(!on));$(&#x27;.asl-btn&#x27;,dock).tabIndex=on?0:-1;}
+{const seen=new Map(),io=new IntersectionObserver(es=&gt;{es.forEach(e=&gt;seen.set(e.target,e.isIntersecting));inView=[...seen.values()].some(Boolean);dockState();},{threshold:0});io.observe(form);const fin=$(&#x27;.asl-fin-card&#x27;);fin&amp;&amp;io.observe(fin);}
+$$(&#x27;[data-cta]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{{const src=b.dataset.cta||&#x27;dock&#x27;;track(&#x27;cta_click&#x27;,{source:src});if(src===&#x27;dock&#x27;||src===&#x27;closing&#x27;)track(&#x27;sticky_cta_click&#x27;,{source:src});}toCard();setTimeout(()=&gt;{const c=firstCtl();c&amp;&amp;c.focus({preventScroll:true});},reduce?0:520);}));
+
+/* marquee: clone the set once so the loop is seamless */
+{const set=$(&#x27;.asl-mq-set&#x27;),cl=set.cloneNode(true);cl.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);$$(&#x27;img&#x27;,cl).forEach(i=&gt;i.alt=&#x27;&#x27;);set.after(cl);}
+/* owner stories: manual tabs */
+{const sl=$$(&#x27;.asl-tm&#x27;),tb=$$(&#x27;.asl-tabs button&#x27;);let cur=0;
+ const go=(n,f)=&gt;{cur=(n+sl.length)%sl.length;sl.forEach((e,i)=&gt;{e.classList.toggle(&#x27;asl-on&#x27;,i===cur);e.setAttribute(&#x27;aria-hidden&#x27;,String(i!==cur));});tb.forEach((b,i)=&gt;{b.classList.toggle(&#x27;asl-on&#x27;,i===cur);b.setAttribute(&#x27;aria-selected&#x27;,String(i===cur));b.tabIndex=i===cur?0:-1;});if(f)tb[cur].focus({preventScroll:true});track(&#x27;story_view&#x27;,{story:cur});};
+ tb.forEach((b,i)=&gt;{b.addEventListener(&#x27;click&#x27;,()=&gt;go(i));b.addEventListener(&#x27;keydown&#x27;,e=&gt;{const k=e.key;if(k===&#x27;ArrowRight&#x27;||k===&#x27;ArrowLeft&#x27;||k===&#x27;Home&#x27;||k===&#x27;End&#x27;){e.preventDefault();go(k===&#x27;Home&#x27;?0:k===&#x27;End&#x27;?sl.length-1:cur+(k===&#x27;ArrowRight&#x27;?1:-1),true);}});});}
+/* reveal */
+const io=new IntersectionObserver(es=&gt;es.forEach(e=&gt;{if(e.isIntersecting){e.target.classList.add(&#x27;asl-in&#x27;);io.unobserve(e.target);}}),{rootMargin:&#x27;0px 0px -80px 0px&#x27;,threshold:.04});
+$$(&#x27;.asl-r&#x27;).forEach(e=&gt;io.observe(e));
+})();
+&lt;/script&gt;</textarea></details></div></section><section class="panel" data-t="fleet" hidden><div class="embed"><div class="top"><div><span class="tag">Fleet service</span><h3>01 Hero headline</h3><p class="muted">Adds the one style line that shows the description on phones. The headline in it is still your current one.</p></div><button class="btn" data-copy="c-fleet-01">Copy</button></div><details><summary>Show the code (672 characters)</summary><textarea id="c-fleet-01" readonly spellcheck="false">&lt;!-- SourceCo LP | Fleet service | 01 Hero headline | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: the hero description now shows on phones too */@container asl-page (max-width:767px){.asl-lede{display:block;margin-top:12px;max-width:none;font-size:15px;line-height:1.5}}&lt;/style&gt;&lt;div class=&quot;asl-lead&quot;&gt;&lt;h1 class=&quot;asl-h1 asl-rise asl-d1&quot; id=&quot;h1&quot;&gt;You Built a Great Fleet Business. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&lt;/h1&gt;&lt;p class=&quot;asl-lede asl-rise asl-d2&quot; id=&quot;sub&quot;&gt;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&lt;/p&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">Fleet service</span><h3>02 Lead form (all 3 steps)</h3><p class="muted">New line under each button, and the Prefer email first? checkbox on the last step.</p></div><button class="btn" data-copy="c-fleet-02">Copy</button></div><details><summary>Show the code (9,866 characters)</summary><textarea id="c-fleet-02" readonly spellcheck="false">&lt;!-- SourceCo LP | Fleet service | 02 Lead form (all 3 steps) | paste replaces the whole embed --&gt;&lt;style&gt;/* Round 3: email-first option + step 3 reassurance */.asl-ef{display:flex;align-items:flex-start;gap:11px;margin:18px 0 0;padding:13px 14px;border:1px solid rgba(34,31,28,.16);border-radius:12px;font:400 13.5px/1.45 var(--font-text);color:var(--ink);cursor:pointer}.asl-ef input{width:18px;height:18px;margin:1px 0 0;flex:0 0 auto;accent-color:#221f1c}.asl-ef b{font-weight:600}.asl-assure3{margin-top:14px}&lt;/style&gt;&lt;style&gt;#stepLabel{white-space:nowrap}.asl-pane h2,.asl-pane legend{text-wrap:balance}&lt;/style&gt;&lt;div class=&quot;asl-plate asl-form&quot; role=&quot;group&quot; aria-label=&quot;Confidential valuation request&quot;&gt;&lt;div class=&quot;asl-f-head&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-back&quot; id=&quot;back&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot; transform=&quot;rotate(180 8 8)&quot;/&gt;&lt;/svg&gt;Back&lt;/button&gt;&lt;p class=&quot;asl-f-kick&quot; id=&quot;kick&quot;&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#lock2&quot;/&gt;&lt;/svg&gt;Confidential valuation request&lt;/p&gt;&lt;span class=&quot;asl-f-step&quot; id=&quot;stepLabel&quot;&gt;Step 1 of 3&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;asl-prog&quot; aria-hidden=&quot;true&quot;&gt;&lt;i class=&quot;asl-on&quot;&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;i&gt;&lt;/i&gt;&lt;/div&gt;&lt;p class=&quot;asl-resume&quot; id=&quot;resume&quot; hidden&gt;Welcome back. Your answers are saved.&lt;/p&gt;&lt;div class=&quot;asl-panes&quot; id=&quot;panes&quot;&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;1&quot;&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q1&quot; tabindex=&quot;-1&quot;&gt;What kind of fleet work do you do?&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;Three quick steps. About a minute.&lt;/p&gt;&lt;fieldset class=&quot;asl-chips asl-c1&quot; aria-labelledby=&quot;q1&quot;&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;mobile&quot; autocomplete=&quot;off&quot; aria-required=&quot;true&quot;&gt;&lt;span&gt;Mobile fleet repair&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;shop&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Shop-based fleet repair&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;both&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Both&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-tile&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;shop_type&quot; data-name=&quot;shop_type&quot; value=&quot;other&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Other&lt;/span&gt;&lt;/label&gt;&lt;/fieldset&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;1&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;2&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q2&quot; tabindex=&quot;-1&quot;&gt;Two quick details&lt;/h2&gt;&lt;p class=&quot;asl-qs&quot;&gt;So we can match you with buyers who fit.&lt;/p&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-rev&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-rev&quot;&gt;Annual revenue&lt;small&gt;Most recent year. A rough number is fine.&lt;/small&gt;&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c3&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;under-1m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Under $1M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;1m-2m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$1M – $2M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;2m-5m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$2M – $5M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;5m-10m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$5M – $10M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;10m-15m&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$10M – $15M&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;revenue&quot; data-name=&quot;revenue&quot; value=&quot;15m-plus&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;$15M +&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;rev&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-rev&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose your annual revenue.&lt;/p&gt;&lt;/fieldset&gt;&lt;p class=&quot;asl-note&quot; id=&quot;under&quot; role=&quot;status&quot; hidden&gt;&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Most of our buyers look for businesses with $1.2M+ in annual revenue. You can still continue and we will tell you whether a match is likely.&lt;/span&gt;&lt;/p&gt;
+&lt;p class=&quot;asl-note&quot; id=&quot;under1&quot; role=&quot;status&quot; hidden&gt;
+&lt;svg width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#info&quot;/&gt;&lt;/svg&gt;
+&lt;span&gt;Most of our buyers look for businesses with $1.2M+ in annual revenue, so a match for the business alone is less likely. You can still continue. If you own the property your business runs from, we can help you sell that too.&lt;/span&gt;
+&lt;/p&gt;
+&lt;fieldset class=&quot;asl-grp&quot; id=&quot;own&quot; aria-labelledby=&quot;l-own&quot; hidden&gt;
+&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-own&quot;&gt;Do you own the property your business runs from?&lt;/legend&gt;
+&lt;div class=&quot;asl-chips&quot; style=&quot;grid-template-columns:repeat(2,1fr)&quot;&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;yes&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Yes, I own it&lt;/span&gt;&lt;/label&gt;
+&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;owns_property_choice&quot; data-name=&quot;owns_property_choice&quot; value=&quot;no&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;No, I rent or I’m mobile only&lt;/span&gt;&lt;/label&gt;
+&lt;/div&gt;
+&lt;p class=&quot;asl-gerr&quot; id=&quot;e-own&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Tell us if you own the property.&lt;/p&gt;
+&lt;/fieldset&gt;&lt;fieldset class=&quot;asl-grp&quot; aria-labelledby=&quot;l-time&quot;&gt;&lt;legend class=&quot;asl-lbl&quot; id=&quot;l-time&quot;&gt;When are you thinking of selling?&lt;/legend&gt;&lt;div class=&quot;asl-chips asl-c6&quot;&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;asap&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;As soon as possible&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;6-months&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within 6 months&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Within a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;over-1-year&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;More than a year&lt;/span&gt;&lt;/label&gt;&lt;label class=&quot;asl-chip asl-w3&quot;&gt;&lt;input type=&quot;radio&quot; name=&quot;timing&quot; data-name=&quot;timing&quot; value=&quot;exploring&quot; autocomplete=&quot;off&quot;&gt;&lt;span&gt;Just exploring&lt;/span&gt;&lt;/label&gt;&lt;/div&gt;&lt;button type=&quot;button&quot; class=&quot;asl-sr&quot; data-continue=&quot;time&quot;&gt;Continue&lt;/button&gt;&lt;p class=&quot;asl-gentle&quot; id=&quot;explore&quot; hidden&gt;Just exploring is fine. Alia from SourceCo will call you about what buyers in fleet service look for and how they would value your business. Expect her call soon.&lt;/p&gt;&lt;p class=&quot;asl-gerr&quot; id=&quot;e-time&quot; hidden&gt;&lt;svg width=&quot;14&quot; height=&quot;14&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;Choose when you are thinking of selling.&lt;/p&gt;&lt;/fieldset&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;asl-btn&quot; id=&quot;go2&quot;&gt;Continue&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;/section&gt;&lt;section class=&quot;asl-pane&quot; data-step=&quot;3&quot; hidden&gt;&lt;h2 class=&quot;asl-q&quot; id=&quot;q3&quot; tabindex=&quot;-1&quot;&gt;Last step: where can Alia reach you?&lt;/h2&gt;&lt;div class=&quot;asl-fields&quot;&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-name&quot;&gt;Full name&lt;/label&gt;&lt;input id=&quot;f-name&quot; name=&quot;full_name&quot; data-name=&quot;full_name&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; inputmode=&quot;text&quot; placeholder=&quot;First and last name&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-name&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-phone&quot;&gt;Mobile phone&lt;small&gt;Best number to reach you&lt;/small&gt;&lt;/label&gt;&lt;input id=&quot;f-phone&quot; name=&quot;phone&quot; data-name=&quot;phone&quot; type=&quot;tel&quot; autocomplete=&quot;tel&quot; inputmode=&quot;tel&quot; placeholder=&quot;(555) 555-5555&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-phone&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-email&quot;&gt;Email&lt;/label&gt;&lt;input id=&quot;f-email&quot; name=&quot;email&quot; data-name=&quot;email&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; inputmode=&quot;email&quot; placeholder=&quot;you@yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-email&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f&quot;&gt;&lt;label for=&quot;f-state&quot;&gt;State&lt;/label&gt;&lt;div class=&quot;asl-sel&quot;&gt;&lt;select id=&quot;f-state&quot; name=&quot;state&quot; data-name=&quot;state&quot; autocomplete=&quot;address-level1&quot; aria-required=&quot;true&quot;&gt;&lt;option value=&quot;&quot;&gt;Select state&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-state&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-f asl-wide&quot;&gt;&lt;label for=&quot;f-web&quot;&gt;Business website or name&lt;/label&gt;&lt;input id=&quot;f-web&quot; name=&quot;website&quot; data-name=&quot;website&quot; type=&quot;text&quot; autocomplete=&quot;organization&quot; inputmode=&quot;text&quot; autocapitalize=&quot;off&quot; spellcheck=&quot;false&quot; placeholder=&quot;yourcompany.com&quot; aria-required=&quot;true&quot;&gt;&lt;p class=&quot;asl-err&quot; id=&quot;e-web&quot; hidden&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;label class=&quot;asl-ef&quot; for=&quot;f-emailfirst&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;f-emailfirst&quot; name=&quot;email_first&quot; data-name=&quot;email_first&quot; value=&quot;yes&quot;&gt;&lt;span&gt;&lt;b&gt;Prefer email first?&lt;/b&gt; Alia will email you before she calls.&lt;/span&gt;&lt;/label&gt;&lt;div id=&quot;hidden&quot; hidden&gt;&lt;/div&gt;&lt;p class=&quot;asl-priv&quot;&gt;&lt;svg class=&quot;asl-ckp&quot; width=&quot;16&quot; height=&quot;16&quot; viewBox=&quot;0 0 20 20&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;10&quot;/&gt;&lt;path d=&quot;M6 10.2l2.8 2.7 5.2-5.6&quot;/&gt;&lt;/svg&gt;&lt;span&gt;Your name stays private. A buyer only gets it if you approve.&lt;/span&gt;&lt;/p&gt;&lt;div class=&quot;asl-callrow&quot;&gt;&lt;img src=&quot;https://cdn.prod.website-files.com/66851dae8a2c8c3f8cd9c703/6ae8dc2b62472bb6cc4073aa_lp-auto-shop-team-alia-face-p-130x130q80.jpg&quot; alt=&quot;&quot; width=&quot;130&quot; height=&quot;130&quot;&gt;&lt;p&gt;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile within &lt;span data-window&gt;1 business day&lt;/span&gt; to walk you through what buyers would pay. We never call your shop or dispatch line.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;asl-act&quot;&gt;&lt;button type=&quot;submit&quot; class=&quot;asl-btn&quot; id=&quot;go3&quot;&gt;See What Buyers Would Pay&lt;svg class=&quot;asl-ar&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;&lt;use href=&quot;#ar&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;asl-assure asl-assure3&quot;&gt;Not a broker · Buyers pay our fee · No obligation&lt;/p&gt;&lt;p class=&quot;asl-consent&quot;&gt;By submitting, you agree to a confidential follow-up from SourceCo. We only share your details with buyers you approve, and we never sell them. &lt;a href=&quot;#privacy&quot;&gt;Privacy Policy&lt;/a&gt; and &lt;a href=&quot;#terms&quot;&gt;Terms&lt;/a&gt;.&lt;/p&gt;&lt;/section&gt;&lt;/div&gt;&lt;/div&gt;</textarea></details></div><div class="embed"><div class="top"><div><span class="tag">Fleet service</span><h3>09 Page script (config, tracking, form logic)</h3><p class="muted">The five hero options behind ?v=, plus contact_preference sent with every lead. emailFirst:false at the top hides the email-first box.</p></div><button class="btn" data-copy="c-fleet-09">Copy</button></div><details><summary>Show the code (22,126 characters)</summary><textarea id="c-fleet-09" readonly spellcheck="false">&lt;!-- SourceCo LP | Fleet service | 09 Page script (config, tracking, form logic) | paste replaces the whole embed --&gt;
+&lt;script&gt;
+(()=&gt;{
+&#x27;use strict&#x27;;
+/* ---------- config (edit here) ---------- */
+const CFG={emailFirst:true,/* false hides the Prefer email first? box */contactWindow:&#x27;1 business day&#x27;,underTwoM:[&#x27;under-1m&#x27;,&#x27;1m-2m&#x27;],underOneM:[&#x27;under-1m&#x27;],metaDataset:&#x27;1511173720348243&#x27;,tyPath:&#x27;/lp-fleet-service-thank-you&#x27;,redirectDelay:450,gtag:true,leadName:&#x27;fleet_service_lp&#x27;};
+const V={
+default:{h:&#x27;You Built a Great Fleet Business. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;},
+compare:{h:&#x27;You Built a Great Fleet Business. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. See which vetted buyers fit, and compare them before you decide anything. The buyer pays our fee.&#x27;,p:&#x27;Compare the buyers who fit&#x27;},
+call:{h:&#x27;You Built a Great Fleet Business. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;,c:&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will call your mobile from (614) 699-5764 within &lt;span data-window&gt;1 business day&lt;/span&gt;. A short call, no obligation. We never call your shop or dispatch line.&#x27;},
+someday:{h:&#x27;Not Ready to Sell? &lt;em&gt;Know Your Number&lt;/em&gt; Anyway.&#x27;,s:&#x27;A lot of owners we talk to have thought about it and never had a number. It costs nothing, commits you to nothing, and nobody finds out.&#x27;},
+control:{h:&#x27;Own a &lt;em&gt;$2M+&lt;/em&gt; Fleet Service Business? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches mobile and shop-based fleet service owners with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+wonder:{h:&#x27;Ever Wondered What Buyers Would Pay for Your Fleet Business?&#x27;,s:&#x27;Find out who would compete for it. Nothing to sign, nobody finds out, and you can walk away any time. The buyer pays our fee.&#x27;},
+terms:{h:&#x27;Get Vetted Buyers &lt;em&gt;Competing&lt;/em&gt; for Your Fleet Service Business.&#x27;,s:&#x27;Buyers who know the trade, shop or mobile. No broker fees, no clean books needed to start, and you decide what happens next.&#x27;},
+main:{h:&#x27;Buyers Are Looking for Fleet Service Businesses Like Yours.&#x27;,s:&#x27;SourceCo confidentially matches fleet service owners with vetted buyers. The buyer pays our fee, and nothing goes public until you decide.&#x27;},
+a:{h:&#x27;Thinking About Stepping Back? Your Trucks Can Keep Rolling.&#x27;,s:&#x27;Tell us what matters, like your techs and your accounts, and SourceCo only introduces vetted buyers who fit. The buyer pays our fee.&#x27;},
+b:{h:&#x27;What’s Your Fleet Service Business Really Worth?&#x27;,s:&#x27;Answer a few quick questions and Alia from SourceCo walks you through what credible buyers could pay.&#x27;},
+c:{h:&#x27;Own a Mobile Fleet Repair Business? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches mobile fleet repair owners with vetted buyers. Not a broker. The buyer pays our fee.&#x27;},
+d:{h:&#x27;&lt;em&gt;$2M+&lt;/em&gt; Fleet Service Business? See What Buyers Would Pay.&#x27;,s:&#x27;SourceCo confidentially matches mobile and shop-based fleet service owners with vetted buyers. Not a broker. The buyer pays our fee, and nothing goes public until you decide to move forward.&#x27;},
+e:{h:&#x27;One Fleet Service Owner Went From First Call to Closed in 84 Days.&#x27;,s:&#x27;Meridian acquired Andy Bender’s TNA Fleet Services off-market through SourceCo. See what buyers would pay for yours.&#x27;},
+f:{h:&#x27;One Offer Isn’t Your Only Option.&#x27;,s:&#x27;Andy Bender walked away from a private equity offer. 84 days after his first call with SourceCo, he sold to Meridian. See which buyers fit your business. The buyer pays our fee.&#x27;},
+number:{h:&#x27;What Would Buyers Pay for Your &lt;em&gt;Fleet Service Business&lt;/em&gt;?&#x27;,s:&#x27;Answer 3 quick questions and we’ll walk you through what vetted buyers would pay. Free, confidential, and no obligation to sell.&#x27;},
+words:{h:&#x27;No One Lined Up to Take Over? See What &lt;em&gt;Buyers Would Pay&lt;/em&gt;.&#x27;,s:&#x27;Vetted buyers who know fleet service are actively buying. Andy Bender went from his first call with us to closed in 84 days.&#x27;},
+pride:{h:&#x27;You Built a Great Fleet Business. It Deserves a &lt;em&gt;Great Exit&lt;/em&gt;.&#x27;,s:&#x27;Most owners think about selling someday, but few know their options. Talk to us to understand your numbers. Every buyer is vetted against what you want for your team, your brand and your role.&#x27;}
+};
+const STATES=&#x27;Alabama,Alaska,Arizona,Arkansas,California,Colorado,Connecticut,Delaware,District of Columbia,Florida,Georgia,Hawaii,Idaho,Illinois,Indiana,Iowa,Kansas,Kentucky,Louisiana,Maine,Maryland,Massachusetts,Michigan,Minnesota,Mississippi,Missouri,Montana,Nebraska,Nevada,New Hampshire,New Jersey,New Mexico,New York,North Carolina,North Dakota,Ohio,Oklahoma,Oregon,Pennsylvania,Rhode Island,South Carolina,South Dakota,Tennessee,Texas,Utah,Vermont,Virginia,Washington,West Virginia,Wisconsin,Wyoming&#x27;.split(&#x27;,&#x27;);
+const TP=[&#x27;utm_source&#x27;,&#x27;utm_medium&#x27;,&#x27;utm_campaign&#x27;,&#x27;utm_content&#x27;,&#x27;utm_term&#x27;,&#x27;fbclid&#x27;,&#x27;gclid&#x27;,&#x27;ad_id&#x27;,&#x27;adset_id&#x27;,&#x27;campaign_id&#x27;,&#x27;ad_name&#x27;,&#x27;adset_name&#x27;,&#x27;campaign_name&#x27;,&#x27;placement&#x27;,&#x27;utm_id&#x27;,&#x27;site_source&#x27;];
+
+const $=(s,r=document)=&gt;r.querySelector(s),$$=(s,r=document)=&gt;[...r.querySelectorAll(s)];
+const reduce=matchMedia(&#x27;(prefers-reduced-motion:reduce)&#x27;).matches;
+const dl=window.dataLayer=window.dataLayer||[];
+const gt=(n,p)=&gt;{try{if(CFG.gtag&amp;&amp;typeof window.gtag===&#x27;function&#x27;)window.gtag(&#x27;event&#x27;,n,{...p,lp:&#x27;fleet_service&#x27;});}catch(e){}};
+const track=(event,p={})=&gt;{dl.push({event,lp:&#x27;fleet_service&#x27;,...p});gt(event,p);};
+/* Meta: send to the SourceCo Dataset only (the one the ad sets optimise on). A plain track() would go to both datasets and double count. */
+const fb=(n,p,std,id)=&gt;{try{if(window.fbq)window.fbq(std?&#x27;trackSingle&#x27;:&#x27;trackSingleCustom&#x27;,CFG.metaDataset,n,p||{},id?{eventID:id}:undefined);}catch(e){}};
+const SK=&#x27;sc_fleet_service_lp_v1&#x27;,TTL=14*864e5;
+const store={get(){try{const d=JSON.parse(localStorage.getItem(SK)||&#x27;null&#x27;);return d&amp;&amp;Date.now()-d.t&lt;TTL?d:null;}catch(e){return null;}},set(o){try{localStorage.setItem(SK,JSON.stringify({...(store.get()||{}),...o,t:Date.now()}));}catch(e){}},clear(){try{localStorage.removeItem(SK);}catch(e){}}};
+const saved=store.get();
+const LEAD_ID=(saved&amp;&amp;saved.id)||(window.crypto&amp;&amp;crypto.randomUUID?crypto.randomUUID():&#x27;l&#x27;+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+store.set({id:LEAD_ID});
+window.SOURCECO_LP={config:CFG,track,leadId:LEAD_ID};
+
+/* ---------- message match + tracking passthrough ---------- */
+const qp=new URLSearchParams(location.search);
+const v=V[(qp.get(&#x27;v&#x27;)||&#x27;default&#x27;).toLowerCase()]||V.default;
+$(&#x27;#h1&#x27;).innerHTML=v.h;$(&#x27;#sub&#x27;).textContent=v.s;
+/* test variants: p swaps the first hero checkmark, c swaps the step 3 call line */
+if(v.p){const li=$(&#x27;.asl-pr li&#x27;);if(li&amp;&amp;li.lastChild)li.lastChild.textContent=v.p;}
+if(v.c){const cr=$(&#x27;.asl-callrow p&#x27;);if(cr)cr.innerHTML=v.c;}
+$$(&#x27;[data-window]&#x27;).forEach(e=&gt;e.textContent=CFG.contactWindow);
+const hid=$(&#x27;#hidden&#x27;);
+const AK=&#x27;sc_lp_attr_v1&#x27;;/* ad ids and UTMs from the ad click, kept 7 days so a later visit or reload still carries them */
+const attr=(()=&gt;{let o={};try{const d=JSON.parse(localStorage.getItem(AK)||&#x27;null&#x27;);if(d&amp;&amp;Date.now()-d.t&lt;7*864e5)o=d.v||{};}catch(e){}
+ const keep=k=&gt;TP.includes(k)||k.startsWith(&#x27;utm_&#x27;);let ch=false;qp.forEach((v2,k)=&gt;{if(keep(k)&amp;&amp;v2){o[k]=v2;ch=true;}});
+ if(ch){try{localStorage.setItem(AK,JSON.stringify({t:Date.now(),v:o}));}catch(e){}}return o;})();
+const ck=n=&gt;{const m=document.cookie.match(new RegExp(&#x27;(?:^|; )&#x27;+n+&#x27;=([^;]*)&#x27;));return m?decodeURIComponent(m[1]):&#x27;&#x27;;};
+const hidden={};
+const addHidden=(n,v2)=&gt;{let i=hid.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;]&#x27;);if(!i){i=document.createElement(&#x27;input&#x27;);i.type=&#x27;hidden&#x27;;i.name=n;i.setAttribute(&#x27;data-name&#x27;,n);hid.append(i);}if(v2!==undefined)i.value=v2;hidden[n]=i;return i;};
+[...new Set([...TP,...Object.keys(attr)])].forEach(k=&gt;addHidden(k,attr[k]||&#x27;&#x27;));
+[&#x27;lead_id&#x27;,&#x27;event_id&#x27;,&#x27;lead_status&#x27;,&#x27;page_variant&#x27;,&#x27;keep_in_touch&#x27;,&#x27;owns_property&#x27;,&#x27;lp_name&#x27;,&#x27;page_url&#x27;,&#x27;fbp&#x27;,&#x27;fbc&#x27;,&#x27;contact_preference&#x27;].forEach(k=&gt;addHidden(k,&#x27;&#x27;));
+function stampHidden(){
+ const fbclid=(attr.fbclid||qp.get(&#x27;fbclid&#x27;)||&#x27;&#x27;);
+ let fbc=ck(&#x27;_fbc&#x27;);if(!fbc&amp;&amp;fbclid)fbc=&#x27;fb.1.&#x27;+Date.now()+&#x27;.&#x27;+fbclid;
+ const set={lead_id:LEAD_ID,event_id:LEAD_ID,lead_status:&#x27;complete&#x27;,page_variant:qp.get(&#x27;v&#x27;)||&#x27;default&#x27;,keep_in_touch:val(&#x27;timing&#x27;)===&#x27;exploring&#x27;?&#x27;1&#x27;:&#x27;0&#x27;,owns_property:CFG.underOneM.includes(val(&#x27;revenue&#x27;))?(val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;):&#x27;&#x27;,lp_name:CFG.leadName,page_url:location.href.split(&#x27;#&#x27;)[0],fbp:ck(&#x27;_fbp&#x27;),fbc,contact_preference:(CFG.emailFirst&amp;&amp;$(&#x27;#f-emailfirst&#x27;)&amp;&amp;$(&#x27;#f-emailfirst&#x27;).checked)?&#x27;email_first&#x27;:&#x27;call&#x27;};
+ /* Marketplace adapter: the owner-lead intake reads these exact names and display strings (same as the /lp-request form), so Timeline, revenue and industry map with no marketplace change. The raw chip values above stay as the clean keys. */
+ const REVL={&#x27;under-1m&#x27;:&#x27;Under $1M (not a great fit)&#x27;,&#x27;1m-2m&#x27;:&#x27;$1M - $2M&#x27;,&#x27;2m-5m&#x27;:&#x27;$2M - $5M&#x27;,&#x27;5m-10m&#x27;:&#x27;$5M - $10M&#x27;,&#x27;10m-15m&#x27;:&#x27;$10M - $15M&#x27;,&#x27;15m-plus&#x27;:&#x27;$15M +&#x27;};
+ const TIML={&#x27;asap&#x27;:&#x27;ASAP&#x27;,&#x27;6-months&#x27;:&#x27;Within 6 months&#x27;,&#x27;1-year&#x27;:&#x27;Within a year&#x27;,&#x27;over-1-year&#x27;:&#x27;More than a year&#x27;,&#x27;exploring&#x27;:&#x27;Just exploring&#x27;};
+ set[&#x27;Estimated Annual Revenue&#x27;]=REVL[val(&#x27;revenue&#x27;)]||&#x27;&#x27;;set[&#x27;Timeline&#x27;]=TIML[val(&#x27;timing&#x27;)]||&#x27;&#x27;;set[&#x27;industry&#x27;]=&#x27;Fleet services&#x27;;
+ Object.keys(set).forEach(k=&gt;addHidden(k,set[k]));
+ TP.forEach(k=&gt;{const i=addHidden(k);if(!i.value&amp;&amp;(attr[k]||qp.get(k)))i.value=attr[k]||qp.get(k);});
+}
+$(&#x27;#f-state&#x27;).append(...STATES.map(s=&gt;new Option(s,s)));
+/* Round 3: email-first. Swaps the call line and is sent as contact_preference. */
+{const ef=$(&#x27;#f-emailfirst&#x27;),cr=$(&#x27;.asl-callrow p&#x27;);if(ef&amp;&amp;!CFG.emailFirst){ef.closest(&#x27;label&#x27;).style.display=&#x27;none&#x27;;}else if(ef&amp;&amp;cr){const callHtml=cr.innerHTML,mailHtml=&#x27;&lt;b&gt;Alia from SourceCo&lt;/b&gt; will email you first, within &lt;span data-window&gt;&#x27;+CFG.contactWindow+&#x27;&lt;/span&gt;, and set up a time to talk that works for you.&#x27;;ef.addEventListener(&#x27;change&#x27;,()=&gt;{cr.innerHTML=ef.checked?mailHtml:callHtml;track(&#x27;email_first_toggled&#x27;,{on:ef.checked});});}}
+
+/* ---------- form state machine ---------- */
+const form=$(&#x27;#lead&#x27;),panes=$(&#x27;#panes&#x27;),live=$(&#x27;#live&#x27;),dock=$(&#x27;#dock&#x27;);
+{const vw=+qp.get(&#x27;vw&#x27;);if(vw){const pg=$(&#x27;#page&#x27;),fit=()=&gt;{pg.style.width=vw+&#x27;px&#x27;;pg.style.zoom=document.documentElement.clientWidth/vw;};fit();addEventListener(&#x27;resize&#x27;,fit);addEventListener(&#x27;load&#x27;,fit);}}
+let step=1,ptr=false,sent=false,inView=true,resumed=false,partialMeta=false;
+const val=n=&gt;(form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||{}).value;
+const mobile=()=&gt;$(&#x27;#page&#x27;).clientWidth&lt;768;
+const heads={1:&#x27;#q1&#x27;,2:&#x27;#q2&#x27;,3:&#x27;#q3&#x27;};
+
+function toCard(smooth=true){const y=form.getBoundingClientRect().top+scrollY-(mobile()?12:24);scrollTo({top:Math.max(0,y),behavior:smooth&amp;&amp;!reduce?&#x27;smooth&#x27;:&#x27;auto&#x27;});}
+function firstCtl(){
+ const r=n=&gt;form.querySelector(`input[name=&quot;${n}&quot;]:checked`)||form.querySelector(`input[name=&quot;${n}&quot;]`);
+ return step===1?r(&#x27;shop_type&#x27;):step===2?r(&#x27;revenue&#x27;):$(&#x27;#f-name&#x27;);
+}
+function show(n,o={}){
+ const h0=panes.offsetHeight,prev=step;step=n;panes.dataset.dir=n&lt;prev?&#x27;b&#x27;:&#x27;f&#x27;;
+ $$(&#x27;.asl-pane&#x27;,form).forEach(p=&gt;p.hidden=+p.dataset.step!==n);
+ $$(&#x27;.asl-prog i&#x27;,form).forEach((el,i)=&gt;el.classList.toggle(&#x27;asl-on&#x27;,i&lt;Math.min(n,3)));
+ $(&#x27;.asl-prog&#x27;,form).hidden=$(&#x27;.asl-f-head&#x27;,form).hidden=n===4;
+ $(&#x27;#back&#x27;).hidden=n&lt;2;$(&#x27;#kick&#x27;).hidden=n&gt;=2;$(&#x27;#resume&#x27;).hidden=!(resumed&amp;&amp;(n===2||n===3));
+ $(&#x27;#stepLabel&#x27;).textContent=&#x27;Step &#x27;+Math.min(n,3)+&#x27; of 3&#x27;;
+ const h1=panes.offsetHeight;
+ if(!reduce&amp;&amp;h0&amp;&amp;h0!==h1&amp;&amp;!o.silent){panes.style.overflow=&#x27;hidden&#x27;;panes.animate([{height:h0+&#x27;px&#x27;},{height:h1+&#x27;px&#x27;}],{duration:380,easing:&#x27;cubic-bezier(.16,1,.3,1)&#x27;}).onfinish=()=&gt;{panes.style.overflow=&#x27;&#x27;;};}
+ if(o.push)history.pushState({step:n},&#x27;&#x27;);
+ if(!o.silent){
+  if(n&lt;4)track(&#x27;form_step_viewed&#x27;,{step:n});
+  live.textContent=&#x27;&#x27;;setTimeout(()=&gt;{live.textContent=&#x27;Step &#x27;+n+&#x27; of 3&#x27;;},60);
+  const hd=$(heads[n]);hd&amp;&amp;hd.focus({preventScroll:true});
+  if(mobile()||form.getBoundingClientRect().top&lt;0)toCard();
+ }
+ dockState();
+}
+
+/* step 1 */
+function go1(){const s=val(&#x27;shop_type&#x27;);if(!s)return;track(&#x27;form_step_completed&#x27;,{step:1,shop_type:s});fb(&#x27;QuizStep1&#x27;,{shop_type:s});store.set({shop_type:s});show(2,{push:true});}
+/* step 2 */
+function group(n,id,msg){const ok=!!val(n);$(id).hidden=ok;if(!ok)track(&#x27;form_error&#x27;,{field:n,error:&#x27;required&#x27;});return ok;}
+function go2(){
+ const a=group(&#x27;revenue&#x27;,&#x27;#e-rev&#x27;),b=group(&#x27;timing&#x27;,&#x27;#e-time&#x27;),c=CFG.underOneM.includes(val(&#x27;revenue&#x27;))?group(&#x27;owns_property_choice&#x27;,&#x27;#e-own&#x27;):true;
+ if(!a||!b||!c){const f=form.querySelector(`input[name=&quot;${!a?&#x27;revenue&#x27;:!b?&#x27;timing&#x27;:&#x27;owns_property_choice&#x27;}&quot;]`);f&amp;&amp;f.focus();return;}
+ track(&#x27;form_step_completed&#x27;,{step:2,revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});fb(&#x27;QuizStep2&#x27;,{revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;)});store.set({revenue:val(&#x27;revenue&#x27;),timing:val(&#x27;timing&#x27;),owns:val(&#x27;owns_property_choice&#x27;)||&#x27;&#x27;});show(3,{push:true});
+}
+function under(){
+ const r=val(&#x27;revenue&#x27;),low=CFG.underOneM.includes(r),mid=CFG.underTwoM.includes(r)&amp;&amp;!low;
+ const box=$(&#x27;#under&#x27;),box1=$(&#x27;#under1&#x27;),own=$(&#x27;#own&#x27;);
+ if(mid&amp;&amp;box.hidden)track(&#x27;under2m_message_shown&#x27;);
+ if(low&amp;&amp;box1.hidden)track(&#x27;under1m_message_shown&#x27;);
+ box.hidden=!mid;box1.hidden=!low;own.hidden=!low;
+ if(!low){$$(&#x27;input[name=&quot;owns_property_choice&quot;]&#x27;,form).forEach(i=&gt;{i.checked=false;});$(&#x27;#e-own&#x27;).hidden=true;}
+}
+/* step 3 */
+const F={
+ name:{el:&#x27;#f-name&#x27;,err:&#x27;#e-name&#x27;,check:v=&gt;v.trim().length&lt;2?(v.trim()?&#x27;Enter your full name.&#x27;:&#x27;Enter your full name.&#x27;):&#x27;&#x27;},
+ email:{el:&#x27;#f-email&#x27;,err:&#x27;#e-email&#x27;,check:v=&gt;/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim())?&#x27;&#x27;:&#x27;Enter a valid email address, like name@example.com.&#x27;},
+ phone:{el:&#x27;#f-phone&#x27;,err:&#x27;#e-phone&#x27;,check:v=&gt;{let d=v.replace(/\D/g,&#x27;&#x27;);if(d.length===11&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);return d.length===10?&#x27;&#x27;:&#x27;Enter a 10-digit phone number.&#x27;;}},
+ state:{el:&#x27;#f-state&#x27;,err:&#x27;#e-state&#x27;,check:v=&gt;v?&#x27;&#x27;:&#x27;Select your state.&#x27;}
+,
+ web:{el:&#x27;#f-web&#x27;,err:&#x27;#e-web&#x27;,check:v=&gt;v.trim().length&lt;2?&#x27;Enter your business website or name.&#x27;:&#x27;&#x27;}
+};
+const ICON=&#x27;&lt;svg width=&quot;14&quot; height=&quot;14&quot;&gt;&lt;use href=&quot;#warn&quot;/&gt;&lt;/svg&gt;&#x27;;
+function check(k,silent){
+ const f=F[k],el=$(f.el),box=$(f.err),m=f.check(el.value);
+ if(m){el.setAttribute(&#x27;aria-invalid&#x27;,&#x27;true&#x27;);el.setAttribute(&#x27;aria-describedby&#x27;,box.id);box.innerHTML=ICON+m;box.hidden=false;if(!silent)track(&#x27;form_error&#x27;,{field:el.name,error:el.value.trim()?&#x27;invalid&#x27;:&#x27;required&#x27;});}
+ else clear(k);
+ return !m;
+}
+function clear(k){const f=F[k],el=$(f.el);el.removeAttribute(&#x27;aria-invalid&#x27;);el.removeAttribute(&#x27;aria-describedby&#x27;);$(f.err).hidden=true;}
+Object.keys(F).forEach(k=&gt;{const el=$(F[k].el);el.addEventListener(&#x27;blur&#x27;,()=&gt;check(k));el.addEventListener(&#x27;input&#x27;,()=&gt;{if(el.getAttribute(&#x27;aria-invalid&#x27;))clear(k);});el.addEventListener(&#x27;change&#x27;,()=&gt;{if(k===&#x27;state&#x27;)check(k);});});
+$(&#x27;#f-phone&#x27;).addEventListener(&#x27;input&#x27;,e=&gt;{let d=e.target.value.replace(/\D/g,&#x27;&#x27;);if(d.length&gt;10&amp;&amp;d[0]===&#x27;1&#x27;)d=d.slice(1);d=d.slice(0,10);e.target.value=d.length&gt;6?`(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}`:d.length&gt;3?`(${d.slice(0,3)}) ${d.slice(3)}`:d?`(${d}`:&#x27;&#x27;;});
+let lastPartial=&#x27;&#x27;;
+/* Partial lead signal: a valid phone or email on step 3. Event only, no contact details leave the page (lead routing of partials comes later). */
+function partial(){
+ if(sent||step!==3)return;
+ const ph=!F.phone.check($(&#x27;#f-phone&#x27;).value),em=!F.email.check($(&#x27;#f-email&#x27;).value);
+ if(!ph&amp;&amp;!em)return;
+ const key=(ph?&#x27;p&#x27;:&#x27;&#x27;)+(em?&#x27;e&#x27;:&#x27;&#x27;);if(key===lastPartial)return;lastPartial=key;
+ track(&#x27;partial_lead_captured&#x27;,{has_phone:ph,has_email:em,event_id:LEAD_ID});
+ if(!partialMeta){partialMeta=true;fb(&#x27;PartialLead&#x27;,{has_phone:ph,has_email:em},false,LEAD_ID);}
+}
+Object.keys(F).forEach(k=&gt;$(F[k].el).addEventListener(k===&#x27;state&#x27;?&#x27;change&#x27;:&#x27;blur&#x27;,()=&gt;setTimeout(partial,0)));
+/* final submit: validate, stamp the hidden fields, then let the native Webflow form send it */
+let sending=false;
+function readyToSend(){
+ const bad=[&#x27;name&#x27;,&#x27;phone&#x27;,&#x27;email&#x27;,&#x27;state&#x27;,&#x27;web&#x27;].filter(k=&gt;!check(k));
+ if(bad.length){$(F[bad[0]].el).focus();return false;}
+ return true;
+}
+function beforeSend(){
+ sending=true;$(&#x27;#go3&#x27;).classList.add(&#x27;asl-busy&#x27;);
+ stampHidden();track(&#x27;form_submit&#x27;,{event_id:LEAD_ID});
+}
+function onSuccess(){
+ if(sent)return;sent=true;
+ const rev=val(&#x27;revenue&#x27;),shop_type=val(&#x27;shop_type&#x27;),timing=val(&#x27;timing&#x27;),web=($(&#x27;#f-web&#x27;).value||&#x27;&#x27;).trim();
+ try{localStorage.setItem(&#x27;sc_lp_handoff&#x27;,JSON.stringify({lead_id:LEAD_ID,shop_type,revenue:rev,shop:web.slice(0,60),t:Date.now()}));sessionStorage.setItem(&#x27;sc_lead_fired_&#x27;+LEAD_ID,&#x27;1&#x27;);}catch(e){}
+ document.body.classList.add(&#x27;asl-submitted&#x27;);dockState();
+ track(&#x27;form_submit_success&#x27;,{event_id:LEAD_ID,shop_type,revenue:rev,timing,under_2m:CFG.underTwoM.includes(rev)});
+ fb(&#x27;Lead&#x27;,{content_name:CFG.leadName,shop_type,revenue:rev},true,LEAD_ID);
+ if(timing===&#x27;exploring&#x27;)track(&#x27;keep_in_touch_opt_in&#x27;);
+ store.clear();
+ setTimeout(()=&gt;{location.assign(CFG.tyPath);},CFG.redirectDelay);
+}
+function onFail(){sending=false;$(&#x27;#go3&#x27;).classList.remove(&#x27;asl-busy&#x27;);track(&#x27;form_submit_error&#x27;,{event_id:LEAD_ID});}
+{/* Webflow shows .w-form-done on success and .w-form-fail on failure, by setting an inline display style */
+ const wrap=form.closest(&#x27;.w-form&#x27;);
+ if(wrap){const done=wrap.querySelector(&#x27;.w-form-done&#x27;),fail=wrap.querySelector(&#x27;.w-form-fail&#x27;);
+  const shown=el=&gt;el&amp;&amp;el.style.display&amp;&amp;el.style.display!==&#x27;none&#x27;;
+  if(done)new MutationObserver(()=&gt;{if(shown(done))onSuccess();}).observe(done,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});
+  if(fail)new MutationObserver(()=&gt;{if(shown(fail))onFail();}).observe(fail,{attributes:true,attributeFilter:[&#x27;style&#x27;,&#x27;class&#x27;]});}}
+
+/* events */
+form.addEventListener(&#x27;pointerdown&#x27;,e=&gt;{ptr=!!e.target.closest(&#x27;.asl-chip&#x27;);});
+form.addEventListener(&#x27;keydown&#x27;,e=&gt;{
+ ptr=false;
+ if(e.key===&#x27;Enter&#x27;&amp;&amp;e.target.type===&#x27;radio&#x27;){e.preventDefault();e.target.checked=true;e.target.dispatchEvent(new Event(&#x27;change&#x27;,{bubbles:true}));if(step===1)go1();else if(step===2){const n=e.target.name;if(n===&#x27;revenue&#x27;)form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;).focus();else go2();}}
+});
+form.addEventListener(&#x27;click&#x27;,e=&gt;{
+ const t=e.target;
+ if(t.matches(&#x27;input[type=radio]&#x27;)&amp;&amp;step===1&amp;&amp;ptr){ptr=false;setTimeout(go1,300);}
+ const c=t.closest(&#x27;[data-continue]&#x27;);
+ if(c){const k=c.dataset.continue;if(k===&#x27;1&#x27;)go1();else if(k===&#x27;rev&#x27;){const r=form.querySelector(&#x27;input[name=&quot;timing&quot;]&#x27;);r&amp;&amp;r.focus();}else go2();}
+});
+form.addEventListener(&#x27;change&#x27;,e=&gt;{
+ const n=e.target.name;
+ if(n===&#x27;revenue&#x27;){under();$(&#x27;#e-rev&#x27;).hidden=true;}
+ if(n===&#x27;owns_property_choice&#x27;){$(&#x27;#e-own&#x27;).hidden=true;}
+ if(n===&#x27;timing&#x27;){$(&#x27;#e-time&#x27;).hidden=true;$(&#x27;#explore&#x27;).hidden=e.target.value!==&#x27;exploring&#x27;;}
+});
+form.addEventListener(&#x27;submit&#x27;,e=&gt;{
+ if(step===1){e.preventDefault();e.stopPropagation();go1();return;}
+ if(step===2){e.preventDefault();e.stopPropagation();go2();return;}
+ if(sending||!readyToSend()){e.preventDefault();e.stopPropagation();return;}
+ beforeSend();/* not stopped: Webflow&#x27;s own handler now sends the form */
+},true);
+$(&#x27;#go2&#x27;).addEventListener(&#x27;click&#x27;,go2);
+$(&#x27;#back&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;history.back());
+addEventListener(&#x27;popstate&#x27;,e=&gt;{let n=(e.state&amp;&amp;e.state.step)||1;if(n===step||n&gt;3)return;if(n&lt;step)track(&#x27;form_back&#x27;,{step:n});show(n);});
+history.replaceState({step:1},&#x27;&#x27;);
+if(saved&amp;&amp;saved.shop_type){
+ const setR=(n,v)=&gt;{const r=form.querySelector(&#x27;input[name=&quot;&#x27;+n+&#x27;&quot;][value=&quot;&#x27;+v+&#x27;&quot;]&#x27;);if(r)r.checked=true;return !!r;};
+ if(setR(&#x27;shop_type&#x27;,saved.shop_type)){
+  let to=2;
+  const okR=saved.revenue&amp;&amp;setR(&#x27;revenue&#x27;,saved.revenue),okT=saved.timing&amp;&amp;setR(&#x27;timing&#x27;,saved.timing);
+  if(okR&amp;&amp;okT)to=3;
+  if(saved.owns)setR(&#x27;owns_property_choice&#x27;,saved.owns);
+  if(to===3&amp;&amp;CFG.underOneM.includes(saved.revenue)&amp;&amp;!saved.owns)to=2;
+  under();$(&#x27;#explore&#x27;).hidden=val(&#x27;timing&#x27;)!==&#x27;exploring&#x27;;
+  resumed=true;for(let s=2;s&lt;=to;s++)history.pushState({step:s},&#x27;&#x27;);
+  show(to,{silent:true});track(&#x27;form_resumed&#x27;,{step:to});
+ }
+}
+if(!resumed){show(1,{silent:true});track(&#x27;form_step_viewed&#x27;,{step:1});}
+
+/* sticky bar + closing CTA */
+function dockState(){const on=!inView&amp;&amp;!document.body.classList.contains(&#x27;asl-submitted&#x27;);dock.classList.toggle(&#x27;asl-show&#x27;,on);dock.setAttribute(&#x27;aria-hidden&#x27;,String(!on));$(&#x27;.asl-btn&#x27;,dock).tabIndex=on?0:-1;}
+{const seen=new Map(),io=new IntersectionObserver(es=&gt;{es.forEach(e=&gt;seen.set(e.target,e.isIntersecting));inView=[...seen.values()].some(Boolean);dockState();},{threshold:0});io.observe(form);const fin=$(&#x27;.asl-fin-card&#x27;);fin&amp;&amp;io.observe(fin);}
+$$(&#x27;[data-cta]&#x27;).forEach(b=&gt;b.addEventListener(&#x27;click&#x27;,()=&gt;{{const src=b.dataset.cta||&#x27;dock&#x27;;track(&#x27;cta_click&#x27;,{source:src});if(src===&#x27;dock&#x27;||src===&#x27;closing&#x27;)track(&#x27;sticky_cta_click&#x27;,{source:src});}toCard();setTimeout(()=&gt;{const c=firstCtl();c&amp;&amp;c.focus({preventScroll:true});},reduce?0:520);}));
+
+/* marquee: clone the set once so the loop is seamless */
+{const set=$(&#x27;.asl-mq-set&#x27;),cl=set.cloneNode(true);cl.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);$$(&#x27;img&#x27;,cl).forEach(i=&gt;i.alt=&#x27;&#x27;);set.after(cl);}
+/* owner stories: manual tabs */
+{const sl=$$(&#x27;.asl-tm&#x27;),tb=$$(&#x27;.asl-tabs button&#x27;);let cur=0;
+ const go=(n,f)=&gt;{cur=(n+sl.length)%sl.length;sl.forEach((e,i)=&gt;{e.classList.toggle(&#x27;asl-on&#x27;,i===cur);e.setAttribute(&#x27;aria-hidden&#x27;,String(i!==cur));});tb.forEach((b,i)=&gt;{b.classList.toggle(&#x27;asl-on&#x27;,i===cur);b.setAttribute(&#x27;aria-selected&#x27;,String(i===cur));b.tabIndex=i===cur?0:-1;});if(f)tb[cur].focus({preventScroll:true});track(&#x27;story_view&#x27;,{story:cur});};
+ tb.forEach((b,i)=&gt;{b.addEventListener(&#x27;click&#x27;,()=&gt;go(i));b.addEventListener(&#x27;keydown&#x27;,e=&gt;{const k=e.key;if(k===&#x27;ArrowRight&#x27;||k===&#x27;ArrowLeft&#x27;||k===&#x27;Home&#x27;||k===&#x27;End&#x27;){e.preventDefault();go(k===&#x27;Home&#x27;?0:k===&#x27;End&#x27;?sl.length-1:cur+(k===&#x27;ArrowRight&#x27;?1:-1),true);}});});}
+/* reveal */
+const io=new IntersectionObserver(es=&gt;es.forEach(e=&gt;{if(e.isIntersecting){e.target.classList.add(&#x27;asl-in&#x27;);io.unobserve(e.target);}}),{rootMargin:&#x27;0px 0px -80px 0px&#x27;,threshold:.04});
+$$(&#x27;.asl-r&#x27;).forEach(e=&gt;io.observe(e));
+})();
+&lt;/script&gt;</textarea></details></div></section>
+</div><script>
+document.querySelectorAll('.tabs button').forEach(function(b){b.addEventListener('click',function(){
+ document.querySelectorAll('.tabs button').forEach(function(x){x.setAttribute('aria-selected',String(x===b));});
+ document.querySelectorAll('.panel').forEach(function(p){p.hidden=p.getAttribute('data-t')!==b.getAttribute('data-t');});});});
+document.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){
+ var ta=document.getElementById(b.getAttribute('data-copy')),done=function(){b.textContent='Copied';b.classList.add('done');setTimeout(function(){b.textContent='Copy';b.classList.remove('done');},1600);};
+ var fallback=function(){var d=ta.closest('details');d.open=true;ta.focus();ta.select();try{document.execCommand('copy');done();}catch(e){b.textContent='Select all and copy';}};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,fallback);}else fallback();});});
+</script></body></html>
